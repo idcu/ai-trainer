@@ -67,6 +67,24 @@ ai-trainer/
 - 人工智能训练师理论复习（单选汇总）.docx
 - 人工智能训练师理论复习（多选汇总）.docx
 
+## 🚀 快速部署
+
+### GitHub Pages 在线访问（推荐）
+
+本项目已支持 GitHub Pages 部署，无需服务器即可在线访问题库系统：
+
+1. 将代码推送到 GitHub 仓库
+2. 进入仓库的 **Settings** → **Pages**
+3. 在 **Build and deployment** 部分：
+   - Source: 选择 **Deploy from a branch**
+   - Branch: 选择 `main` 或 `master`，文件夹选择 `/ (root)`
+4. 点击 **Save** 保存
+5. 等待1-2分钟部署完成，访问 `https://<your-username>.github.io/ai-trainer/`
+
+> 访问后会自动跳转到题库系统页面
+
+---
+
 ## 快速开始
 
 ### 使用题库系统
