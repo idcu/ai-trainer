@@ -29,6 +29,7 @@ class QuizApp {
         this.submitBtn = document.getElementById('submit-btn');
         this.nextBtn = document.getElementById('next-btn');
         this.feedbackEl = document.getElementById('feedback');
+        this.analysisEl = document.getElementById('analysis');
 
         this.finalScoreValueEl = document.getElementById('final-score-value');
         this.correctCountEl = document.getElementById('correct-count');
@@ -145,6 +146,8 @@ class QuizApp {
 
         this.feedbackEl.classList.add('hidden');
         this.feedbackEl.className = 'feedback hidden';
+        this.analysisEl.classList.add('hidden');
+        this.analysisEl.className = 'analysis hidden';
 
         this.submitBtn.classList.remove('hidden');
         this.submitBtn.disabled = true;
@@ -165,19 +168,19 @@ class QuizApp {
 
     renderJudgeOptions() {
         const options = [
-            { letter: '对', text: '正确' },
-            { letter: '错', text: '错误' }
+            { letter: '对', text: '正确', value: '正确' },
+            { letter: '错', text: '错误', value: '错误' }
         ];
 
         options.forEach(opt => {
             const optionEl = document.createElement('div');
             optionEl.className = 'option';
-            optionEl.dataset.value = opt.letter;
+            optionEl.dataset.value = opt.value;
             optionEl.innerHTML = `
                 <span class="option-letter">${opt.letter}</span>
                 <span class="option-text">${opt.text}</span>
             `;
-            optionEl.addEventListener('click', () => this.selectOption(optionEl, opt.letter));
+            optionEl.addEventListener('click', () => this.selectOption(optionEl, opt.value));
             this.optionsEl.appendChild(optionEl);
         });
     }
@@ -254,7 +257,7 @@ class QuizApp {
             this.wrongCount++;
         }
 
-        this.showFeedback(isCorrect, correctAnswer);
+        this.showFeedback(isCorrect, correctAnswer, question.analysis);
         this.highlightAnswers(correctAnswer);
 
         this.submitBtn.classList.add('hidden');
@@ -265,7 +268,7 @@ class QuizApp {
         }
     }
 
-    showFeedback(isCorrect, correctAnswer) {
+    showFeedback(isCorrect, correctAnswer, analysis) {
         this.feedbackEl.classList.remove('hidden');
         if (isCorrect) {
             this.feedbackEl.classList.add('correct');
@@ -274,10 +277,20 @@ class QuizApp {
             this.feedbackEl.classList.add('wrong');
             this.feedbackEl.textContent = `✗ 回答错误！正确答案：${correctAnswer}`;
         }
+        
+        if (analysis) {
+            this.analysisEl.classList.remove('hidden');
+            this.analysisEl.innerHTML = `<div class="analysis-title">📖 答案解析</div><div class="analysis-content">${analysis}</div>`;
+        }
     }
 
     highlightAnswers(correctAnswer) {
-        const correctSet = new Set(correctAnswer.split(''));
+        const correctSet = new Set();
+        if (correctAnswer === '正确' || correctAnswer === '错误') {
+            correctSet.add(correctAnswer);
+        } else {
+            correctAnswer.split('').forEach(c => correctSet.add(c));
+        }
 
         this.optionsEl.querySelectorAll('.option').forEach(el => {
             el.classList.add('disabled');

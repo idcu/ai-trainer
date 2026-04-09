@@ -54,7 +54,8 @@ def get_questions(question_type):
             'type': row['type'],
             'question': row['question'],
             'options': json.loads(row['options']) if row['options'] else [],
-            'answer': row['answer']
+            'answer': row['answer'],
+            'analysis': row['analysis'] if row['analysis'] else ''
         }
         questions.append(question)
     

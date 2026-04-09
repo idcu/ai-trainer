@@ -23,6 +23,7 @@ def init_database():
             question TEXT NOT NULL,
             options TEXT,
             answer TEXT NOT NULL,
+            analysis TEXT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
@@ -38,9 +39,9 @@ def init_database():
             for q in questions:
                 options_json = json.dumps(q.get('options', []), ensure_ascii=False)
                 cursor.execute('''
-                    INSERT INTO questions (type, question, options, answer)
-                    VALUES (?, ?, ?, ?)
-                ''', (q['type'], q['question'], options_json, q['answer']))
+                    INSERT INTO questions (type, question, options, answer, analysis)
+                    VALUES (?, ?, ?, ?, ?)
+                ''', (q['type'], q['question'], options_json, q['answer'], q.get('analysis', '')))
             
             print(f'已导入 {len(questions)} 道 {q_type} 题目')
     

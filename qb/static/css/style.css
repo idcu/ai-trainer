@@ -325,6 +325,30 @@ main {
     border: 1px solid #f5c6cb;
 }
 
+.analysis {
+    margin-top: 25px;
+    padding: 25px;
+    border-radius: 10px;
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+}
+
+.analysis-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #856404;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.analysis-content {
+    font-size: 1rem;
+    color: #856404;
+    line-height: 1.8;
+}
+
 .result {
     text-align: center;
 }
