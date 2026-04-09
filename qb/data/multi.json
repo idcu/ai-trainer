@@ -1,0 +1,1413 @@
+[
+  {
+    "id": 1,
+    "type": "multi",
+    "question": "以下哪些因素会影响业务数据质量完整性校验的效果?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "校验规则的合理性"
+      },
+      {
+        "letter": "B",
+        "text": "数据的来源可靠性"
+      },
+      {
+        "letter": "C",
+        "text": "校验工具的性能"
+      },
+      {
+        "letter": "D",
+        "text": "数据的存储格式"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 2,
+    "type": "multi",
+    "question": "以下哪些措施有助于实现业务数据质量的一致性控制?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "建立统一的数据标准和规范"
+      },
+      {
+        "letter": "B",
+        "text": "对数据进行定期的质量检查和清洗"
+      },
+      {
+        "letter": "C",
+        "text": "采用先进的数据处理技术和工具"
+      },
+      {
+        "letter": "D",
+        "text": "加强对数据录入人员的培训和管理"
+      }
+    ],
+    "answer": "ABD"
+  },
+  {
+    "id": 3,
+    "type": "multi",
+    "question": "以下哪些因素会影响数据全生命周期追踪的效果?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "追踪技术的选择"
+      },
+      {
+        "letter": "B",
+        "text": "人员的管理和培训"
+      },
+      {
+        "letter": "C",
+        "text": "数据的规模和复杂度"
+      },
+      {
+        "letter": "D",
+        "text": "企业的业务需求变化"
+      }
+    ],
+    "answer": "ABCD"
+  },
+  {
+    "id": 4,
+    "type": "multi",
+    "question": "以下哪些因素会影响数据版本标识的合理性和有效性?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "版本号的命名规则"
+      },
+      {
+        "letter": "B",
+        "text": "版本管理的流程"
+      },
+      {
+        "letter": "C",
+        "text": "数据的存储方式"
+      }
+    ],
+    "answer": ""
+  },
+  {
+    "id": 5,
+    "type": "multi",
+    "question": "在使用 Excel 进行数据可视化时，哪些操作可以提高图表的可读性?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "添加数据标签"
+      },
+      {
+        "letter": "B",
+        "text": "更改图表类型"
+      },
+      {
+        "letter": "C",
+        "text": "调整颜色编码"
+      },
+      {
+        "letter": "D",
+        "text": "删除不必要的数据系列"
+      }
+    ],
+    "answer": "ABCD"
+  },
+  {
+    "id": 6,
+    "type": "multi",
+    "question": "在进行数据采集时，需要考虑的因素包括",
+    "options": [
+      {
+        "letter": "A",
+        "text": "采集范围"
+      },
+      {
+        "letter": "B",
+        "text": "采集对象"
+      },
+      {
+        "letter": "C",
+        "text": "采集环境"
+      },
+      {
+        "letter": "D",
+        "text": "采集成本"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 7,
+    "type": "multi",
+    "question": "在数据清洗过程中，以下哪些属于清洗质量评估的标准?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "完整性"
+      },
+      {
+        "letter": "B",
+        "text": "一致性"
+      },
+      {
+        "letter": "C",
+        "text": "美观性"
+      },
+      {
+        "letter": "D",
+        "text": "准确性"
+      }
+    ],
+    "answer": "ABD"
+  },
+  {
+    "id": 8,
+    "type": "multi",
+    "question": "统计操作规范性检查中，关于数据质量的评估，以下哪些指标是常用的?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "数据的准确性"
+      },
+      {
+        "letter": "B",
+        "text": "数据的完整性"
+      },
+      {
+        "letter": "C",
+        "text": "数据的一致性"
+      },
+      {
+        "letter": "D",
+        "text": "数据的时效性"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 9,
+    "type": "multi",
+    "question": "在处理标注歧义时，引入外部资源可以包括",
+    "options": [
+      {
+        "letter": "A",
+        "text": "相关的学术文献"
+      },
+      {
+        "letter": "B",
+        "text": "专业的词典"
+      },
+      {
+        "letter": "C",
+        "text": "行业专家的意见"
+      },
+      {
+        "letter": "D",
+        "text": "标注人员的主观猜测"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 10,
+    "type": "multi",
+    "question": "以下哪些选项是 Pandas 中处理重复值的相关函数?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "duplicated()"
+      },
+      {
+        "letter": "B",
+        "text": "drop_duplicates()"
+      },
+      {
+        "letter": "C",
+        "text": "isna()"
+      },
+      {
+        "letter": "D",
+        "text": "fillna()"
+      }
+    ],
+    "answer": "AB"
+  },
+  {
+    "id": 11,
+    "type": "multi",
+    "question": "下列哪些方法可以用于检测数据中的异常值?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "箱线图法"
+      },
+      {
+        "letter": "B",
+        "text": "Z 分数法"
+      },
+      {
+        "letter": "C",
+        "text": "均值法"
+      },
+      {
+        "letter": "D",
+        "text": "聚类分析"
+      }
+    ],
+    "answer": "ABD"
+  },
+  {
+    "id": 12,
+    "type": "multi",
+    "question": "下列哪些图形可以用于展示数据的频数分布?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "直方图"
+      },
+      {
+        "letter": "B",
+        "text": "饼图"
+      },
+      {
+        "letter": "C",
+        "text": "箱线图"
+      },
+      {
+        "letter": "D",
+        "text": "散点图"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 13,
+    "type": "multi",
+    "question": "以下属于视频数据标注工具常见功能的有",
+    "options": [
+      {
+        "letter": "A",
+        "text": "支持多种标注类型切换"
+      },
+      {
+        "letter": "B",
+        "text": "提供标注审核机制"
+      },
+      {
+        "letter": "C",
+        "text": "自动识别视频中的所有物体"
+      },
+      {
+        "letter": "D",
+        "text": "允许多人协作标注"
+      }
+    ],
+    "answer": "ABD"
+  },
+  {
+    "id": 14,
+    "type": "multi",
+    "question": "下列哪些词在句子中可能作为动词使用，并在词性标注中会被标注为动词?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "思考"
+      },
+      {
+        "letter": "B",
+        "text": "书本"
+      },
+      {
+        "letter": "C",
+        "text": "跳跃"
+      },
+      {
+        "letter": "D",
+        "text": "阳光"
+      }
+    ],
+    "answer": "AC"
+  },
+  {
+    "id": 15,
+    "type": "multi",
+    "question": "有效的备份策略应包含哪些要素?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "定期备份计划"
+      },
+      {
+        "letter": "B",
+        "text": "备份数据验证"
+      },
+      {
+        "letter": "C",
+        "text": "异地存储方案"
+      },
+      {
+        "letter": "D",
+        "text": "即时恢复机制"
+      }
+    ],
+    "answer": "ABCD"
+  },
+  {
+    "id": 6,
+    "type": "multi",
+    "question": "在设计容器化运维平台时，需要考虑哪些关键技术要素?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "服务网格(Service Mesh)"
+      },
+      {
+        "letter": "B",
+        "text": "持续集成/持续部署(CI/CD)"
+      },
+      {
+        "letter": "C",
+        "text": "无服务器计算(Serverless)"
+      },
+      {
+        "letter": "D",
+        "text": "边缘计算节点部署"
+      }
+    ],
+    "answer": "AB"
+  },
+  {
+    "id": 17,
+    "type": "multi",
+    "question": "根据《中华人民共和国个人信息保护法》，个人信息处理者处理个人信息，有下列哪些情形之一的，行为人不承担民事责任?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "在该自然人或者其监护人同意的范围内合理实施的行为"
+      },
+      {
+        "letter": "B",
+        "text": "合理处理该自然人自行公开的或者其他已经合法公开的信息，但是该自然人明确拒绝或者处理该信息侵害其重大利益的除外"
+      },
+      {
+        "letter": "C",
+        "text": "为维护公共利益或者该自然人合法权益，合理实施的其他行为"
+      },
+      {
+        "letter": "D",
+        "text": "未经个人同意， 但为商业利益而处理个人信息"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 18,
+    "type": "multi",
+    "question": "以下哪些行为体现了人工智能训练师的“恪尽职守”职业守则?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "定期参加数据安全培训"
+      },
+      {
+        "letter": "B",
+        "text": "对模型输出的医疗诊断承担最终责任"
+      },
+      {
+        "letter": "C",
+        "text": "建立标注流程质量监控仪表盘"
+      },
+      {
+        "letter": "D",
+        "text": "因项目进度压力降低标注精度"
+      }
+    ],
+    "answer": "AC"
+  },
+  {
+    "id": 19,
+    "type": "multi",
+    "question": "数据伦理中“尊重个人隐私”原则包括以下哪些内容?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "保护个人数据不被未经授权的访问"
+      },
+      {
+        "letter": "B",
+        "text": "允许数据主体访问其个人数据"
+      },
+      {
+        "letter": "C",
+        "text": "允许数据主体更正其个人数据"
+      },
+      {
+        "letter": "D",
+        "text": "允许数据主体删除其个人数据"
+      }
+    ],
+    "answer": "ABCD"
+  },
+  {
+    "id": 20,
+    "type": "multi",
+    "question": "终身学习的特点有哪些?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "时间观念上:从一次性学习到终身学习"
+      },
+      {
+        "letter": "B",
+        "text": "空间观念上:从封闭学习到开放学习"
+      },
+      {
+        "letter": "C",
+        "text": "价值观念上:从学历学习到能力学习"
+      },
+      {
+        "letter": "D",
+        "text": "学习观念上:成人学习的形式是多种多样的"
+      }
+    ],
+    "answer": "ABCD"
+  },
+  {
+    "id": 21,
+    "type": "multi",
+    "question": "以下哪些内容是业务数据汇总报告中应该包含的?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "数据采集的方法和过程"
+      },
+      {
+        "letter": "B",
+        "text": "数据的汇总结果和分析"
+      },
+      {
+        "letter": "C",
+        "text": "对未来业务的预测和建议"
+      },
+      {
+        "letter": "D",
+        "text": "报告撰写者的个人喜好"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 22,
+    "type": "multi",
+    "question": "以下哪些属于常见的数据来源类型?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "公开数据集"
+      },
+      {
+        "letter": "B",
+        "text": "用户行为日志"
+      },
+      {
+        "letter": "C",
+        "text": "传感器数据"
+      },
+      {
+        "letter": "D",
+        "text": "股票市场数据"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 23,
+    "type": "multi",
+    "question": "以下哪些技术可以用于文本数据的情感分析?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "朴素贝叶斯分类器"
+      },
+      {
+        "letter": "B",
+        "text": "支持向量机"
+      },
+      {
+        "letter": "C",
+        "text": "深度学习模型(如 LSTM)"
+      },
+      {
+        "letter": "D",
+        "text": "决策树"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 24,
+    "type": "multi",
+    "question": "以下哪些因素会影响业务数据汇总可视化的效果?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "图表类型的选择"
+      },
+      {
+        "letter": "B",
+        "text": "数据的准确性"
+      },
+      {
+        "letter": "C",
+        "text": "色彩搭配"
+      },
+      {
+        "letter": "D",
+        "text": "办公场所的装修风格"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 25,
+    "type": "multi",
+    "question": "下列哪些方法属于因果推断工具?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "回归分析"
+      },
+      {
+        "letter": "B",
+        "text": "聚类分析"
+      },
+      {
+        "letter": "C",
+        "text": "双重差分法"
+      },
+      {
+        "letter": "D",
+        "text": "倾向得分匹配"
+      }
+    ],
+    "answer": "ACD"
+  },
+  {
+    "id": 26,
+    "type": "multi",
+    "question": "在进行标注一致性评估时，以下哪些做法有助于提高评估的准确性?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "选择合适的评估指标"
+      },
+      {
+        "letter": "B",
+        "text": "确保标注数据的质量"
+      },
+      {
+        "letter": "C",
+        "text": "对标注者进行统一培训"
+      },
+      {
+        "letter": "D",
+        "text": "多次进行一致性评估并取平均值"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 27,
+    "type": "multi",
+    "question": "分类结果完整性验证的方法包括哪些?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "人工复核"
+      },
+      {
+        "letter": "B",
+        "text": "自动校验工具"
+      },
+      {
+        "letter": "C",
+        "text": "数据清洗"
+      },
+      {
+        "letter": "D",
+        "text": "抽样检查"
+      }
+    ],
+    "answer": "ABD"
+  },
+  {
+    "id": 28,
+    "type": "multi",
+    "question": "下列哪些技术可以用于语音数据清洗?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "自动语音识别(ASR)"
+      },
+      {
+        "letter": "B",
+        "text": "声纹识别"
+      },
+      {
+        "letter": "C",
+        "text": "OpenCV 图像处理"
+      },
+      {
+        "letter": "D",
+        "text": "Praat 语音分析"
+      }
+    ],
+    "answer": "ABD"
+  },
+  {
+    "id": 29,
+    "type": "multi",
+    "question": "以下哪些指标属于标注效率评估指标中用于衡量标注质量的指标?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "标注准确率"
+      },
+      {
+        "letter": "B",
+        "text": "标注错误率"
+      },
+      {
+        "letter": "C",
+        "text": "标注召回率"
+      },
+      {
+        "letter": "D",
+        "text": "标注一致性"
+      }
+    ],
+    "answer": "ABCD"
+  },
+  {
+    "id": 30,
+    "type": "multi",
+    "question": "以下哪些因素会影响标注一致性评估的结果?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "标注者的专业水平"
+      },
+      {
+        "letter": "B",
+        "text": "标注规范的明确程度"
+      },
+      {
+        "letter": "C",
+        "text": "标注数据的复杂性"
+      },
+      {
+        "letter": "D",
+        "text": "评估指标的选择"
+      }
+    ],
+    "answer": "ABCD"
+  },
+  {
+    "id": 31,
+    "type": "multi",
+    "question": "以下哪些格式属于视频文件格式?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "MP4"
+      },
+      {
+        "letter": "B",
+        "text": "AVI"
+      },
+      {
+        "letter": "C",
+        "text": "WAV"
+      }
+    ],
+    "answer": ""
+  },
+  {
+    "id": 32,
+    "type": "multi",
+    "question": "下列哪些操作可以帮助识别和处理数据集中的重复值?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "使用 duplicated()函数标记重复行"
+      },
+      {
+        "letter": "B",
+        "text": "使用 drop_duplicates()函数去除重复行"
+      },
+      {
+        "letter": "C",
+        "text": "使用 unique()函数获取唯一值"
+      },
+      {
+        "letter": "D",
+        "text": "使用 isnull()函数检测缺失值"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 33,
+    "type": "multi",
+    "question": "文本数据标注工具通常支持以下哪些标注类型?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "文本分类"
+      },
+      {
+        "letter": "B",
+        "text": "情感分析"
+      },
+      {
+        "letter": "C",
+        "text": "命名实体识别"
+      },
+      {
+        "letter": "D",
+        "text": "图像识别"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 34,
+    "type": "multi",
+    "question": "评估数据清洗效果时， 可以从哪些方面入手?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "比较清洗前后的数据量"
+      },
+      {
+        "letter": "B",
+        "text": "检查数据集中是否还有空值或特殊标记"
+      },
+      {
+        "letter": "C",
+        "text": "比较清洗前后的数据分布"
+      },
+      {
+        "letter": "D",
+        "text": "仅通过数据的平均值进行比较"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 35,
+    "type": "multi",
+    "question": "在进行服务器性能监控时，可能会用到以下哪些技术?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "系统命令行工具"
+      },
+      {
+        "letter": "B",
+        "text": "数据库存储过程"
+      },
+      {
+        "letter": "C",
+        "text": "监控软件(如 Zabbix、Prometheus 等)"
+      },
+      {
+        "letter": "D",
+        "text": "脚本语言(如 Python、Shell 等)"
+      }
+    ],
+    "answer": "ACD"
+  },
+  {
+    "id": 36,
+    "type": "multi",
+    "question": "在智能系统维护中，使用日志分析工具时，以下哪些做法可以提高日志分析的效率",
+    "options": [
+      {
+        "letter": "A",
+        "text": "建立日志分析模板"
+      },
+      {
+        "letter": "B",
+        "text": "定期清理无用日志"
+      },
+      {
+        "letter": "C",
+        "text": "手动逐行分析日志"
+      },
+      {
+        "letter": "D",
+        "text": "使用自动化分析工具"
+      }
+    ],
+    "answer": "ABD"
+  },
+  {
+    "id": 37,
+    "type": "multi",
+    "question": "在安装 AI 开发环境时， 需要考虑的因素包括",
+    "options": [
+      {
+        "letter": "A",
+        "text": "硬件兼容性"
+      },
+      {
+        "letter": "B",
+        "text": "软件版本匹配"
+      },
+      {
+        "letter": "C",
+        "text": "操作系统版本"
+      },
+      {
+        "letter": "D",
+        "text": "显示器分辨率"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 38,
+    "type": "multi",
+    "question": "传递绝密级秘密载体， 应当通过什么方式?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "机要交通"
+      },
+      {
+        "letter": "B",
+        "text": "机要通信"
+      },
+      {
+        "letter": "C",
+        "text": "派人直接递送"
+      },
+      {
+        "letter": "D",
+        "text": "快递公司"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 39,
+    "type": "multi",
+    "question": "社会的变化需要社会成员不断学习，下列哪些属于人们必须学习的客观原因?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "物质世界的巨大改变"
+      },
+      {
+        "letter": "B",
+        "text": "精神世界的巨大改变"
+      },
+      {
+        "letter": "C",
+        "text": "道德世界的巨大改变"
+      },
+      {
+        "letter": "D",
+        "text": "个人兴趣的改变"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 40,
+    "type": "multi",
+    "question": "以下哪些行为符合\"保守秘密，诚实守信\"的职业守则?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "离职后删除所有工作文件"
+      },
+      {
+        "letter": "B",
+        "text": "婉拒猎头关于前公司技术细节的询问"
+      },
+      {
+        "letter": "C",
+        "text": "在技术分享会中隐去客户敏感信息"
+      },
+      {
+        "letter": "D",
+        "text": "向监管部门如实报告模型缺陷"
+      }
+    ],
+    "answer": "BCD"
+  },
+  {
+    "id": 41,
+    "type": "multi",
+    "question": "以下哪些方法可以用于数据质量准确性验证?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "规则校验"
+      },
+      {
+        "letter": "B",
+        "text": "对比校验"
+      },
+      {
+        "letter": "C",
+        "text": "统计校验"
+      },
+      {
+        "letter": "D",
+        "text": "人工抽检"
+      }
+    ],
+    "answer": "ABCD"
+  },
+  {
+    "id": 42,
+    "type": "multi",
+    "question": "在进行图片数据采集时， 以下哪些因素需要考虑?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "采集设备的性能"
+      },
+      {
+        "letter": "B",
+        "text": "采集环境的光照条件"
+      },
+      {
+        "letter": "C",
+        "text": "采集人员的专业水平"
+      },
+      {
+        "letter": "D",
+        "text": "采集数据的存储方式"
+      }
+    ],
+    "answer": "ABCD"
+  },
+  {
+    "id": 43,
+    "type": "multi",
+    "question": "以下哪些因素在制定数据标准化统一命名规则时需要重点考虑?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "数据的业务语义清晰性"
+      },
+      {
+        "letter": "B",
+        "text": "不同编程语言的兼容性"
+      },
+      {
+        "letter": "C",
+        "text": "数据库系统的性能优化"
+      },
+      {
+        "letter": "D",
+        "text": "团队成员的个人习惯"
+      }
+    ],
+    "answer": "AB"
+  },
+  {
+    "id": 44,
+    "type": "multi",
+    "question": "以下哪些因素在制定数据标准化统一命名规则时需要考虑?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "数据的业务含义"
+      },
+      {
+        "letter": "B",
+        "text": "编程语言的命名规范"
+      },
+      {
+        "letter": "C",
+        "text": "数据库系统的要求"
+      },
+      {
+        "letter": "D",
+        "text": "数据的存储格式"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 45,
+    "type": "multi",
+    "question": "下列哪些统计量可以用于描述数据的集中趋势?",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 46,
+    "type": "multi",
+    "question": "以下哪些措施有助于提高统计操作的规范性?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "加强统计人员的培训和教育"
+      },
+      {
+        "letter": "B",
+        "text": "建立完善的统计流程和制度"
+      },
+      {
+        "letter": "C",
+        "text": "定期对统计操作进行审查和评估"
+      },
+      {
+        "letter": "D",
+        "text": "随意更改统计方法和流程以适应不同情况"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 47,
+    "type": "multi",
+    "question": "以下哪些因素会影响标注结果准确性验证的效果?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "验证人员的专业能力和经验"
+      },
+      {
+        "letter": "B",
+        "text": "验证所使用的标准和规范"
+      },
+      {
+        "letter": "C",
+        "text": "标注数据本身的复杂程度"
+      },
+      {
+        "letter": "D",
+        "text": "验证环境的舒适度"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 48,
+    "type": "multi",
+    "question": "以下哪些统计指标可以用于衡量数据的离散程度?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "方差"
+      },
+      {
+        "letter": "B",
+        "text": "标准差"
+      },
+      {
+        "letter": "C",
+        "text": "变异系数"
+      },
+      {
+        "letter": "D",
+        "text": "均值"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 49,
+    "type": "multi",
+    "question": "以下属于情感标注中常见基础情感类别的有",
+    "options": [
+      {
+        "letter": "A",
+        "text": "快乐"
+      },
+      {
+        "letter": "B",
+        "text": "悲伤"
+      },
+      {
+        "letter": "C",
+        "text": "惊讶"
+      },
+      {
+        "letter": "D",
+        "text": "厌恶"
+      }
+    ],
+    "answer": "ABCD"
+  },
+  {
+    "id": 50,
+    "type": "multi",
+    "question": "SPSS 提供的统计分析过程包括哪些类型?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "描述性统计"
+      },
+      {
+        "letter": "B",
+        "text": "平均值比较"
+      },
+      {
+        "letter": "C",
+        "text": "相关性分析"
+      },
+      {
+        "letter": "D",
+        "text": "数据挖掘"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 51,
+    "type": "multi",
+    "question": "在处理统计异常数据时， 以下哪些策略是合理的?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "删除异常值如果异常值是由于数据录入错误或测量误差导致的"
+      },
+      {
+        "letter": "B",
+        "text": "替换异常值如用均值、中位数或基于模型的方法替换"
+      },
+      {
+        "letter": "C",
+        "text": "保留异常值，但进行标记和分析"
+      },
+      {
+        "letter": "D",
+        "text": "忽略异常值，直接进行数据分析不推荐"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 52,
+    "type": "multi",
+    "question": "在提高分类结果完整性验证效率方面， 可以采取哪些措施?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "使用先进的自动校验工具"
+      },
+      {
+        "letter": "B",
+        "text": "增加人工复核的数量"
+      },
+      {
+        "letter": "C",
+        "text": "优化数据标注流程"
+      },
+      {
+        "letter": "D",
+        "text": "减少不必要的标注类别"
+      }
+    ],
+    "answer": "AC"
+  },
+  {
+    "id": 53,
+    "type": "multi",
+    "question": "在 NumPy 中， 以下哪些函数可以用于数组的基本操作?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "np.array()"
+      },
+      {
+        "letter": "B",
+        "text": "np.zeros()"
+      },
+      {
+        "letter": "C",
+        "text": "np.ones()"
+      },
+      {
+        "letter": "D",
+        "text": "np.empty()"
+      }
+    ],
+    "answer": "ABCD"
+  },
+  {
+    "id": 54,
+    "type": "multi",
+    "question": "以下哪些工具包可以用于文本数据的清洗和预处理?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Re(正则表达式)"
+      },
+      {
+        "letter": "B",
+        "text": "Pandas"
+      },
+      {
+        "letter": "C",
+        "text": "NLTK"
+      }
+    ],
+    "answer": ""
+  },
+  {
+    "id": 55,
+    "type": "multi",
+    "question": "在进行系统日志维护时，需要注意以下哪些方面?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "在日志操作过程中先停止系统的运行"
+      },
+      {
+        "letter": "B",
+        "text": "遵循相关的法律法规和企业内部规定"
+      },
+      {
+        "letter": "C",
+        "text": "备份重要的日志数据，以防操作失误导致数据丢失"
+      },
+      {
+        "letter": "D",
+        "text": "只关注当前正在使用的日志文件， 忽略历史日志"
+      }
+    ],
+    "answer": "BC"
+  },
+  {
+    "id": 56,
+    "type": "multi",
+    "question": "以下哪些属于系统更新的最佳实践?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "定期执行系统更新"
+      },
+      {
+        "letter": "B",
+        "text": "在测试环境验证更新"
+      },
+      {
+        "letter": "C",
+        "text": "使用官方源获取更新"
+      },
+      {
+        "letter": "D",
+        "text": "跳过非安全相关更新"
+      }
+    ],
+    "answer": "ABC"
+  },
+  {
+    "id": 57,
+    "type": "multi",
+    "question": "在 Windows 系统维护中，以下哪些操作可以提高系统安全性?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "关闭自动更新"
+      },
+      {
+        "letter": "B",
+        "text": "启用防火墙"
+      },
+      {
+        "letter": "C",
+        "text": "定期清理临时文件"
+      },
+      {
+        "letter": "D",
+        "text": "禁用所有共享"
+      }
+    ],
+    "answer": "BC"
+  },
+  {
+    "id": 58,
+    "type": "multi",
+    "question": "在职业技能伦理中，以下哪些是职业责任的体现?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "遵守法律法规"
+      },
+      {
+        "letter": "B",
+        "text": "完成工作任务"
+      },
+      {
+        "letter": "C",
+        "text": "追求个人利益最大化"
+      },
+      {
+        "letter": "D",
+        "text": "保护企业机密"
+      }
+    ],
+    "answer": ""
+  },
+  {
+    "id": 59,
+    "type": "multi",
+    "question": "职业技能伦理要求我们如何处理工作中的冲突?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "逃避冲突"
+      },
+      {
+        "letter": "B",
+        "text": "积极沟通"
+      },
+      {
+        "letter": "C",
+        "text": "推卸责任"
+      },
+      {
+        "letter": "D",
+        "text": "寻求解决方案"
+      }
+    ],
+    "answer": "BD"
+  },
+  {
+    "id": 60,
+    "type": "multi",
+    "question": "以下哪些行为符合\"团结协作\"的职业守则要求?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "主动分享个性化标注技巧"
+      },
+      {
+        "letter": "B",
+        "text": "在需求评审会保持沉默"
+      },
+      {
+        "letter": "C",
+        "text": "参与跨团队技术预研项目"
+      },
+      {
+        "letter": "D",
+        "text": "私下质疑同事技术方案"
+      }
+    ],
+    "answer": "AC"
+  }
+]

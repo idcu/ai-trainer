@@ -1,0 +1,22 @@
+{
+  "name": "人工智能训练师题库",
+  "short_name": "题库系统",
+  "description": "人工智能训练师理论复习题库",
+  "start_url": "/index_standalone.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#667eea",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "static/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "static/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
