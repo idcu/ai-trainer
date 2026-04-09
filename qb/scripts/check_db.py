@@ -1,8 +1,12 @@
 import sqlite3
 import json
 import os
+import sys
 
-db_path = os.path.join(os.path.dirname(__file__), 'quiz.db')
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from config import Config
+
+db_path = Config.DB_PATH
 
 if not os.path.exists(db_path):
     print('数据库不存在！')

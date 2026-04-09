@@ -34,6 +34,11 @@ class QuizApp {
         this.correctCountEl = document.getElementById('correct-count');
         this.wrongCountEl = document.getElementById('wrong-count');
         this.accuracyEl = document.getElementById('accuracy');
+
+        this.questionCountInput = document.getElementById('question-count');
+        this.totalJudgeEl = document.getElementById('total-judge');
+        this.totalSingleEl = document.getElementById('total-single');
+        this.totalMultiEl = document.getElementById('total-multi');
     }
 
     initEventListeners() {
@@ -47,6 +52,21 @@ class QuizApp {
 
         this.submitBtn.addEventListener('click', () => this.submitAnswer());
         this.nextBtn.addEventListener('click', () => this.nextQuestion());
+    }
+
+    async loadStats() {
+        try {
+            const response = await fetch('/api/stats');
+            if (!response.ok) {
+                throw new Error('网络响应异常');
+            }
+            const stats = await response.json();
+            this.totalJudgeEl.textContent = stats.judge;
+            this.totalSingleEl.textContent = stats.single;
+            this.totalMultiEl.textContent = stats.multi;
+        } catch (error) {
+            console.error('加载统计数据失败:', error);
+        }
     }
 
     async loadQuestions(type) {
@@ -76,8 +96,12 @@ class QuizApp {
             return;
         }
 
-        // 每次只取前50道题
-        this.questions = this.questions.slice(0, 50);
+        // 获取用户配置的题目数量
+        const questionCount = parseInt(this.questionCountInput.value) || CONFIG.QUESTIONS_PER_QUIZ;
+        // 确保题目数量不超过题库总量
+        const actualCount = Math.min(questionCount, this.questions.length);
+        // 每次只取配置的题目数量
+        this.questions = this.questions.slice(0, actualCount);
         this.totalQuestionsEl.textContent = this.questions.length;
         this.showQuiz();
         this.displayQuestion();
@@ -224,7 +248,7 @@ class QuizApp {
         this.isAnswered = true;
 
         if (isCorrect) {
-            this.score += 10;
+            this.score += CONFIG.POINTS_PER_CORRECT;
             this.correctCount++;
         } else {
             this.wrongCount++;
@@ -282,5 +306,6 @@ class QuizApp {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new QuizApp();
+    const app = new QuizApp();
+    app.loadStats();
 });

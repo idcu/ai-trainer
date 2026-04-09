@@ -1,9 +1,13 @@
 import json
 import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from config import Config
 
 def update_data_js():
-    data_dir = os.path.join(os.path.dirname(__file__), 'data')
-    output_file = os.path.join(os.path.dirname(__file__), 'static', 'js', 'data.js')
+    data_dir = Config.DATA_DIR
+    output_file = os.path.join(Config.STATIC_DIR, 'js', 'data.js')
     
     question_data = {
         'judge': [],

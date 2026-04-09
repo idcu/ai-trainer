@@ -2,25 +2,97 @@
 
 基于 Flask + SQLite 的在线题库系统，支持判断题、单选题和多选题。
 
+## 🚀 快速部署
+
+### 方式一：GitHub Pages / Gitee Pages（推荐，零成本）
+
+项目已内置纯前端版本，可直接部署到 GitHub Pages 或 Gitee Pages。
+
+#### GitHub Pages 部署步骤：
+
+1. 将代码推送到 GitHub 仓库
+2. 进入仓库的 **Settings** → **Pages**
+3. 在 **Build and deployment** 部分：
+   - Source: 选择 **Deploy from a branch** 或 **GitHub Actions**
+   - 如果使用 Actions：项目已配置 `.github/workflows/deploy.yml`，推送到 main/master 分支会自动部署
+   - 如果使用 Branch：选择 `main` 或 `master` 分支，文件夹选择 `/ (root)`
+4. 等待部署完成，访问 `https://<your-username>.github.io/<repo-name>/`
+
+#### Gitee Pages 部署步骤：
+
+1. 将代码推送到 Gitee 仓库
+2. 进入仓库的 **服务** → **Gitee Pages**
+3. 选择部署分支（如 `master`），部署目录留空
+4. 点击 **启动**，等待部署完成
+
+### 方式二：Docker 部署
+
+```bash
+# 构建并启动
+docker-compose up -d
+
+# 访问 http://localhost:5000
+```
+
+### 方式三：本地运行
+
+```bash
+# 1. 安装依赖
+pip install -r requirements.txt
+
+# 2. 初始化数据库
+python scripts/init_db.py
+
+# 3. 启动服务器
+python app.py
+
+# 访问 http://localhost:5000
+```
+
+
 ## 项目结构
 
 ```
 qb/
 ├── app.py                  # Flask后端应用
-├── init_db.py             # 数据库初始化脚本
-├── convert_docx.py        # Word文档转换脚本
+├── config.py              # 后端配置文件
 ├── requirements.txt       # Python依赖
 ├── quiz.db               # SQLite数据库文件（运行后生成）
-├── index.html            # 前端页面
-├── data/                 # 原始JSON数据
+├── README.md           # 本文件
+│
+├── scripts/            # 辅助脚本目录
+│   ├── init_db.py          # 数据库初始化脚本
+│   ├── convert_docx.py     # Word文档转换脚本
+│   ├── update_data_js.py   # 更新前端数据脚本
+│   └── check_db.py        # 数据库检查脚本
+│
+├── templates/          # 前端页面目录
+│   ├── index.html        # 后端版本页面
+│   └── index_standalone.html  # 纯前端版本页面
+│
+├── static/             # 静态资源目录
+│   ├── css/
+│   │   └── style.css
+│   └── js/
+│       ├── config.js      # 前端配置文件
+│       ├── app.js
+│       ├── app_standalone.js
+│       └── data.js
+│
+├── data/               # 原始JSON数据
 │   ├── judge.json
 │   ├── single.json
 │   └── multi.json
-└── static/
-    ├── css/
-    │   └── style.css
-    └── js/
-        └── app.js
+│
+├── docs/              # 文档目录
+│   └── ANDROID_BUILD.md  # Android打包指南
+│
+└── android/           # Android构建相关
+    ├── build_android.ps1
+    ├── capacitor.config.json
+    ├── package.json
+    ├── package-lock.json
+    └── manifest.json
 ```
 
 ## 功能特性
@@ -32,6 +104,7 @@ qb/
 - ✅ 实时反馈
 - ✅ 成绩统计
 - ✅ 响应式设计
+- ✅ 支持Android应用构建
 
 ## 安装部署
 
@@ -44,7 +117,7 @@ pip install -r requirements.txt
 ### 2. 初始化数据库
 
 ```bash
-python init_db.py
+python scripts/init_db.py
 ```
 
 这会创建 `quiz.db` 数据库文件，并从 `data/` 目录下的JSON文件导入题目。
@@ -96,9 +169,29 @@ GET /api/health
 如果需要从Word文档导入题目：
 
 ```bash
-python convert_docx.py
-python init_db.py
+python scripts/convert_docx.py
+python scripts/init_db.py
 ```
+
+## 更新前端数据
+
+如果使用纯前端版本，需要更新 data.js 文件：
+
+```bash
+python scripts/update_data_js.py
+```
+
+## 数据库检查
+
+检查数据库中的题目统计：
+
+```bash
+python scripts/check_db.py
+```
+
+## Android打包
+
+详细的Android打包指南请查看 [docs/ANDROID_BUILD.md](docs/ANDROID_BUILD.md)
 
 ## 开发说明
 

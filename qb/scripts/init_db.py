@@ -1,9 +1,13 @@
 import sqlite3
 import json
 import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from config import Config
 
 def init_database():
-    db_path = os.path.join(os.path.dirname(__file__), 'quiz.db')
+    db_path = Config.DB_PATH
     
     if os.path.exists(db_path):
         os.remove(db_path)
@@ -23,7 +27,7 @@ def init_database():
         )
     ''')
     
-    data_dir = os.path.join(os.path.dirname(__file__), 'data')
+    data_dir = Config.DATA_DIR
     
     for q_type in ['judge', 'single', 'multi']:
         json_path = os.path.join(data_dir, f'{q_type}.json')

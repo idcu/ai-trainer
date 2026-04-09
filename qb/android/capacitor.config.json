@@ -1,7 +1,7 @@
 {
   "appId": "com.quiz.app",
   "appName": "题库系统",
-  "webDir": ".",
+  "webDir": "../",
   "server": {
     "androidScheme": "https"
   }

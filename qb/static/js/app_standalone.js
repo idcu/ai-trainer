@@ -75,8 +75,8 @@ class QuizApp {
             return;
         }
 
-        // 每次只取前50道题
-        this.questions = this.questions.slice(0, 50);
+        // 每次只取配置的题目数量
+        this.questions = this.questions.slice(0, CONFIG.QUESTIONS_PER_QUIZ);
         this.totalQuestionsEl.textContent = this.questions.length;
         this.showQuiz();
         this.displayQuestion();
@@ -223,7 +223,7 @@ class QuizApp {
         this.isAnswered = true;
 
         if (isCorrect) {
-            this.score += 10;
+            this.score += CONFIG.POINTS_PER_CORRECT;
             this.correctCount++;
         } else {
             this.wrongCount++;

@@ -1,39 +1,92 @@
 # AI-Trainer
 
-#### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+人工智能训练师培训项目，包含理论培训文档和题库练习系统。
 
-#### 软件架构
-软件架构说明
+## 项目概述
 
+本项目旨在为人工智能训练师提供完整的学习资源，包括：
+- 理论培训文档（docs/）
+- 题库练习系统（qb/）
+- Word格式题目资源（word/）
 
-#### 安装教程
+## 目录结构
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+```
+ai-trainer/
+├── docs/                  # 培训文档目录
+├── qb/                    # 题库系统（Flask + SQLite）
+│   ├── app.py            # Flask后端应用
+│   ├── config.py         # 后端配置文件
+│   ├── requirements.txt  # Python依赖
+│   ├── scripts/          # 辅助脚本目录
+│   │   ├── init_db.py          # 数据库初始化脚本
+│   │   ├── convert_docx.py     # Word文档转换脚本
+│   │   ├── update_data_js.py   # 更新前端数据脚本
+│   │   └── check_db.py        # 数据库检查脚本
+│   ├── templates/        # 前端页面目录
+│   ├── static/           # 静态资源目录
+│   ├── data/             # 原始JSON数据
+│   ├── docs/             # 题库系统文档
+│   └── android/          # Android构建相关
+├── word/                  # Word格式题目
+├── .gitignore
+└── README.md              # 本文件
+```
 
-#### 使用说明
+## docs/ - 培训文档
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+包含人工智能训练师相关的技术文档：
 
-#### 参与贡献
+| 文档 | 说明 |
+|------|------|
+| 01_Python基础.md | Python编程语言基础 |
+| 02_Anaconda安装使用.md | Anaconda环境管理工具 |
+| 03_NumPy库使用及示例.md | NumPy数值计算库 |
+| 04_Pandas库使用及示例.md | Pandas数据分析库 |
+| 05_SQLite3库使用及示例.md | SQLite数据库操作 |
+| 06_LabelStudio安装使用及示例.md | LabelStudio数据标注工具 |
+| 人工智能培训师实操手册.md | 完整实操指南 |
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+## qb/ - 题库练习系统
 
+基于 Flask + SQLite 的在线题库系统，主要功能：
 
-#### 特技
+- 判断题、单选题、多选题三种题型
+- SQLite数据库存储
+- 随机出题
+- 实时反馈与成绩统计
+- 响应式设计
+- 支持Android应用构建
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+详细说明请查看 [qb/README.md](qb/README.md)
+
+## word/ - 题目资源
+
+包含三种题型的Word文档：
+- 人工智能训练师理论复习（判断汇总）.docx
+- 人工智能训练师理论复习（单选汇总）.docx
+- 人工智能训练师理论复习（多选汇总）.docx
+
+## 快速开始
+
+### 使用题库系统
+
+1. 进入 qb/ 目录
+2. 安装依赖：`pip install -r requirements.txt`
+3. 初始化数据库：`python init_db.py`
+4. 启动服务器：`python app.py`
+5. 访问 http://127.0.0.1:5000
+
+### 学习培训文档
+
+直接在 docs/ 目录下查看相关 Markdown 文档。
+
+## 开发环境
+
+- Python 3.x
+- Flask 3.0
+- 前端：原生 HTML/CSS/JavaScript
+
+## 许可证
+
+本项目仅供学习使用。
