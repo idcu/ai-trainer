@@ -11,6 +11,7 @@ class QuizApp {
 
         this.initElements();
         this.initEventListeners();
+        this.loadStats();
     }
 
     initElements() {
@@ -34,6 +35,17 @@ class QuizApp {
         this.correctCountEl = document.getElementById('correct-count');
         this.wrongCountEl = document.getElementById('wrong-count');
         this.accuracyEl = document.getElementById('accuracy');
+
+        this.questionCountInput = document.getElementById('question-count');
+        this.totalJudgeEl = document.getElementById('total-judge');
+        this.totalSingleEl = document.getElementById('total-single');
+        this.totalMultiEl = document.getElementById('total-multi');
+    }
+
+    loadStats() {
+        this.totalJudgeEl.textContent = QUESTION_DATA.judge ? QUESTION_DATA.judge.length : 0;
+        this.totalSingleEl.textContent = QUESTION_DATA.single ? QUESTION_DATA.single.length : 0;
+        this.totalMultiEl.textContent = QUESTION_DATA.multi ? QUESTION_DATA.multi.length : 0;
     }
 
     initEventListeners() {
@@ -75,8 +87,10 @@ class QuizApp {
             return;
         }
 
+        // 获取用户配置的题目数量
+        const questionCount = parseInt(this.questionCountInput.value) || CONFIG.QUESTIONS_PER_QUIZ;
         // 每次只取配置的题目数量
-        this.questions = this.questions.slice(0, CONFIG.QUESTIONS_PER_QUIZ);
+        this.questions = this.questions.slice(0, questionCount);
         this.totalQuestionsEl.textContent = this.questions.length;
         this.showQuiz();
         this.displayQuestion();
