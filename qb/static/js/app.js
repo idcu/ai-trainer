@@ -76,6 +76,8 @@ class QuizApp {
             return;
         }
 
+        // 每次只取前50道题
+        this.questions = this.questions.slice(0, 50);
         this.totalQuestionsEl.textContent = this.questions.length;
         this.showQuiz();
         this.displayQuestion();
