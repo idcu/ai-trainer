@@ -15,15 +15,19 @@
 3. 在 **Build and deployment** 部分：
    - Source: 选择 **Deploy from a branch** 或 **GitHub Actions**
    - 如果使用 Actions：项目已配置 `.github/workflows/deploy.yml`，推送到 main/master 分支会自动部署
-   - 如果使用 Branch：选择 `main` 或 `master` 分支，文件夹选择 `/ (root)`
-4. 等待部署完成，访问 `https://<your-username>.github.io/<repo-name>/`
+   - 如果使用 Branch：选择 `main` 或 `master` 分支，文件夹选择 `/ (root)`（注意：GitHub Pages 只提供 `/ (root)` 和 `/docs` 两个选项）
+4. 点击 **Save** 保存配置
+5. 等待1-2分钟部署完成，访问 `https://<your-username>.github.io/<repo-name>/`
 
 #### Gitee Pages 部署步骤：
 
 1. 将代码推送到 Gitee 仓库
-2. 进入仓库的 **服务** → **Gitee Pages**
-3. 选择部署分支（如 `master`），部署目录留空
-4. 点击 **启动**，等待部署完成
+2. 进入仓库页面，点击顶部的 **管理**（或仓库设置）
+3. 在左侧菜单中找到 **Gitee Pages**（可能在"功能管理"或"服务"分类下）
+4. 选择部署分支（如 `main` 或 `master`），部署目录留空
+5. 点击 **启动**，等待部署完成
+
+> 注意：Gitee Pages 需要仓库先进行实名认证才能使用
 
 ### 方式二：Docker 部署
 
