@@ -11,7 +11,8 @@ class QuizApp {
 
         this.initElements();
         this.initEventListeners();
-        this.loadStats();
+        // 延迟加载统计，确保 QUESTION_DATA 已加载
+        setTimeout(() => this.loadStats(), 10);
     }
 
     initElements() {
@@ -43,9 +44,14 @@ class QuizApp {
     }
 
     loadStats() {
-        this.totalJudgeEl.textContent = QUESTION_DATA.judge ? QUESTION_DATA.judge.length : 0;
-        this.totalSingleEl.textContent = QUESTION_DATA.single ? QUESTION_DATA.single.length : 0;
-        this.totalMultiEl.textContent = QUESTION_DATA.multi ? QUESTION_DATA.multi.length : 0;
+        if (typeof QUESTION_DATA !== 'undefined') {
+            this.totalJudgeEl.textContent = QUESTION_DATA.judge ? QUESTION_DATA.judge.length : 0;
+            this.totalSingleEl.textContent = QUESTION_DATA.single ? QUESTION_DATA.single.length : 0;
+            this.totalMultiEl.textContent = QUESTION_DATA.multi ? QUESTION_DATA.multi.length : 0;
+        } else {
+            // 如果 QUESTION_DATA 还没加载，再试一次
+            setTimeout(() => this.loadStats(), 50);
+        }
     }
 
     initEventListeners() {
