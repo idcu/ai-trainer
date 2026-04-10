@@ -135,12 +135,12 @@ def main():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     qb_dir = os.path.dirname(base_dir)
     project_dir = os.path.dirname(qb_dir)
-    word_dir = os.path.join(project_dir, "word")
+    class_dir = os.path.join(project_dir, "class")
     data_dir = os.path.join(qb_dir, "data")
     static_data_dir = os.path.join(qb_dir, "static", "data")
     
     # 读取判断题
-    judge_file = os.path.join(word_dir, "人工智能训练师理论复习（判断汇总）.docx")
+    judge_file = os.path.join(class_dir, "人工智能训练师理论复习（判断汇总）.docx")
     if os.path.exists(judge_file):
         judge_questions = extract_questions_from_docx(judge_file, "judge")
         output_path = os.path.join(data_dir, "judge.json")
@@ -153,7 +153,7 @@ def main():
         print(f"判断题已转换，共 {len(judge_questions)} 题")
     
     # 读取单选题
-    single_file = os.path.join(word_dir, "人工智能训练师理论复习（单选汇总）.docx")
+    single_file = os.path.join(class_dir, "人工智能训练师理论复习（单选汇总）.docx")
     if os.path.exists(single_file):
         single_questions = extract_questions_from_docx(single_file, "single")
         output_path = os.path.join(data_dir, "single.json")
@@ -166,7 +166,7 @@ def main():
         print(f"单选题已转换，共 {len(single_questions)} 题")
     
     # 读取多选题
-    multi_file = os.path.join(word_dir, "人工智能训练师理论复习（多选汇总）.docx")
+    multi_file = os.path.join(class_dir, "人工智能训练师理论复习（多选汇总）.docx")
     if os.path.exists(multi_file):
         multi_questions = extract_questions_from_docx(multi_file, "multi")
         output_path = os.path.join(data_dir, "multi.json")

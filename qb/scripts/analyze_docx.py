@@ -75,7 +75,7 @@ def main():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     qb_dir = os.path.dirname(base_dir)
     project_dir = os.path.dirname(qb_dir)
-    word_dir = os.path.join(project_dir, "word")
+    class_dir = os.path.join(project_dir, "class")
     
     files = [
         ("人工智能训练师理论复习（判断汇总）.docx", "judge"),
@@ -84,7 +84,7 @@ def main():
     ]
     
     for filename, qtype in files:
-        filepath = os.path.join(word_dir, filename)
+        filepath = os.path.join(class_dir, filename)
         if os.path.exists(filepath):
             analyze_docx(filepath, qtype)
 
