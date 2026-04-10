@@ -1,6 +1,6 @@
 # 人工智能训练师题库系统
 
-基于 Flask + SQLite 的在线题库系统，支持判断题、单选题和多选题。
+基于 Flask + SQLite 的在线题库系统，支持判断题、单选题和多选题。同时提供纯前端版本，可直接部署到 GitHub Pages 或 Gitee Pages。
 
 ## 🚀 快速部署
 
@@ -44,54 +44,63 @@ docker-compose up -d
 # 1. 安装依赖
 pip install -r requirements.txt
 
-# 2. 初始化数据库
+# 2. 配置（可选）
+cp config.json.example config.json
+# 编辑 config.json 文件修改配置
+
+# 3. 初始化数据库
 python scripts/init_db.py
 
-# 3. 启动服务器
+# 4. 启动服务器
 python app.py
 
 # 访问 http://localhost:5000
 ```
-
 
 ## 项目结构
 
 ```
 qb/
 ├── app.py                  # Flask后端应用
-├── config.py              # 后端配置文件
+├── config.py              # 配置加载模块（读取 config.json）
+├── config.json            # 配置文件（不提交到 git）
+├── config.json.example    # 配置文件模板
 ├── requirements.txt       # Python依赖
-├── quiz.db               # SQLite数据库文件（运行后生成）
-├── README.md           # 本文件
+├── README.md              # 本文件
 │
-├── scripts/            # 辅助脚本目录
-│   ├── init_db.py          # 数据库初始化脚本
-│   ├── convert_docx.py     # Word文档转换脚本
-│   ├── update_data_js.py   # 更新前端数据脚本
+├── scripts/               # 辅助脚本目录
+│   ├── init_db.py         # 数据库初始化脚本
+│   ├── convert_docx.py    # Word文档转换脚本
+│   ├── update_data_js.py  # 更新前端数据脚本
 │   └── check_db.py        # 数据库检查脚本
 │
-├── templates/          # 前端页面目录
-│   ├── index.html        # 后端版本页面
-│   └── index_standalone.html  # 纯前端版本页面
+├── templates/             # 前端页面目录
+│   ├── index.html         # 后端版本页面
+│   └── index_standalone.html # 纯前端版本页面
 │
-├── static/             # 静态资源目录
+├── static/                # 静态资源目录
 │   ├── css/
 │   │   └── style.css
-│   └── js/
-│       ├── config.js      # 前端配置文件
-│       ├── app.js
-│       ├── app_standalone.js
-│       └── data.js
+│   ├── js/
+│   │   ├── config.js      # 前端配置文件
+│   │   ├── app.js
+│   │   ├── app_standalone.js
+│   │   └── data.js
+│   └── data/
+│       ├── judge.json     # 判断题数据
+│       ├── single.json    # 单选题数据
+│       └── multi.json     # 多选题数据
 │
-├── data/               # 原始JSON数据
+├── data/                  # 原始JSON数据和数据库
 │   ├── judge.json
 │   ├── single.json
-│   └── multi.json
+│   ├── multi.json
+│   └── quiz.db            # SQLite数据库文件（运行后生成）
 │
-├── docs/              # 文档目录
-│   └── ANDROID_BUILD.md  # Android打包指南
+├── docs/                  # 文档目录
+│   └── ANDROID_BUILD.md   # Android打包指南
 │
-└── android/           # Android构建相关
+└── android/               # Android构建相关
     ├── build_android.ps1
     ├── capacitor.config.json
     ├── package.json
@@ -102,15 +111,88 @@ qb/
 ## 功能特性
 
 - ✅ 三种题型：判断题、单选题、多选题
-- ✅ SQLite数据库存储
+- ✅ 灵活的数据源配置（数据库 / JSON 文件）
 - ✅ Flask后端API
+- ✅ 纯前端版本（支持直接部署到静态服务器）
+- ✅ 前端数据获取方式可选（API / JSON 文件）
 - ✅ 随机出题
 - ✅ 实时反馈
 - ✅ 成绩统计
 - ✅ 响应式设计
 - ✅ 支持Android应用构建
+- ✅ 统一的 JSON 配置文件
 
-## 安装部署
+## 配置说明
+
+项目使用 `config.json` 文件进行配置，复制 `config.json.example` 为 `config.json` 即可：
+
+```bash
+cp config.json.example config.json
+```
+
+### 配置项说明
+
+```json
+{
+    "flask": {
+        "host": "0.0.0.0",
+        "port": 5000,
+        "debug": true
+    },
+    "data_source": {
+        "type": "database",
+        "database": {
+            "path": "data/quiz.db"
+        },
+        "json": {
+            "data_paths": {
+                "judge": "data/judge.json",
+                "single": "data/single.json",
+                "multi": "data/multi.json"
+            }
+        }
+    },
+    "frontend": {
+        "data_source_type": "json",
+        "questions_per_quiz": 50,
+        "points_per_correct": 10,
+        "api_base_url": "",
+        "data_paths": {
+            "judge": "static/data/judge.json",
+            "single": "static/data/single.json",
+            "multi": "static/data/multi.json"
+        }
+    }
+}
+```
+
+### Flask 配置
+
+| 配置项 | 说明 | 默认值 |
+|--------|------|--------|
+| host | Flask服务监听地址 | 0.0.0.0 |
+| port | Flask服务端口 | 5000 |
+| debug | 是否开启调试模式 | true |
+
+### 后端数据源配置
+
+| 配置项 | 说明 | 默认值 |
+|--------|------|--------|
+| data_source.type | 数据源类型：`database` 或 `json` | database |
+| data_source.database.path | SQLite数据库路径 | data/quiz.db |
+| data_source.json.data_paths | JSON文件路径配置 | - |
+
+### 前端配置
+
+| 配置项 | 说明 | 默认值 |
+|--------|------|--------|
+| data_source_type | 前端数据获取方式：`json` 或 `api` | json |
+| questions_per_quiz | 每次答题数量 | 50 |
+| points_per_correct | 每题得分 | 10 |
+| api_base_url | API基础URL（使用api模式时） | "" |
+| data_paths | JSON数据文件路径（使用json模式时） | - |
+
+## 安装部署（后端版本）
 
 ### 1. 安装依赖
 
@@ -118,27 +200,34 @@ qb/
 pip install -r requirements.txt
 ```
 
-### 2. 初始化数据库
+### 2. 配置
+
+```bash
+cp config.json.example config.json
+# 根据需要编辑 config.json 文件
+```
+
+### 3. 初始化数据库
 
 ```bash
 python scripts/init_db.py
 ```
 
-这会创建 `quiz.db` 数据库文件，并从 `data/` 目录下的JSON文件导入题目。
+这会在 `data/` 目录下创建 `quiz.db` 数据库文件，并从 `data/` 目录下的JSON文件导入题目。
 
-### 3. 启动服务器
+### 4. 启动服务器
 
 ```bash
 python app.py
 ```
 
-服务器将在 `http://127.0.0.1:5000` 启动。
+服务器将在配置的地址和端口启动（默认 http://127.0.0.1:5000）。
 
-### 4. 访问应用
+### 5. 访问应用
 
 在浏览器中打开：`http://127.0.0.1:5000`
 
-## API接口
+## API接口（后端版本）
 
 ### 获取题目
 
@@ -148,6 +237,14 @@ GET /api/questions/<type>
 
 - `type`: 题型，可选值 `judge`、`single`、`multi`
 - 返回：该题型的所有题目（已随机排序）
+
+### 获取统计信息
+
+```
+GET /api/stats
+```
+
+- 返回：各题型的题目数量统计
 
 ### 健康检查
 
@@ -166,6 +263,7 @@ GET /api/health
 | question | TEXT | 题目内容 |
 | options | TEXT | 选项（JSON格式） |
 | answer | TEXT | 答案 |
+| analysis | TEXT | 解析 |
 | created_at | TIMESTAMP | 创建时间 |
 
 ## 导入Word文档
@@ -179,7 +277,7 @@ python scripts/init_db.py
 
 ## 更新前端数据
 
-如果使用纯前端版本，需要更新 data.js 文件：
+纯前端版本直接从 `static/data/` 目录下的 JSON 文件读取数据，无需后端。当 `data/` 目录下的 JSON 更新后，需要同步到 `static/data/` 目录：
 
 ```bash
 python scripts/update_data_js.py
@@ -202,8 +300,11 @@ python scripts/check_db.py
 - 后端框架：Flask 3.0
 - 数据库：SQLite
 - 前端：原生 HTML/CSS/JavaScript
+- 配置管理：JSON 配置文件
 
 ## 注意事项
 
-- `quiz.db` 是SQLite数据库文件，不要提交到版本控制
+- `data/quiz.db` 是SQLite数据库文件，不要提交到版本控制
+- `config.json` 文件包含配置，不要提交到版本控制
 - 开发环境使用Flask自带服务器，生产环境请使用WSGI服务器
+- 纯前端版本的数据位于 `static/data/` 目录下的 JSON 文件中

@@ -8,11 +8,15 @@ class QuizApp {
         this.currentType = '';
         this.selectedAnswers = new Set();
         this.isAnswered = false;
+        this.questionData = {
+            judge: [],
+            single: [],
+            multi: []
+        };
 
         this.initElements();
         this.initEventListeners();
-        // 延迟加载统计，确保 QUESTION_DATA 已加载
-        setTimeout(() => this.loadStats(), 10);
+        this.loadAllQuestions();
     }
 
     initElements() {
@@ -44,15 +48,61 @@ class QuizApp {
         this.totalMultiEl = document.getElementById('total-multi');
     }
 
-    loadStats() {
-        if (typeof QUESTION_DATA !== 'undefined') {
-            this.totalJudgeEl.textContent = QUESTION_DATA.judge ? QUESTION_DATA.judge.length : 0;
-            this.totalSingleEl.textContent = QUESTION_DATA.single ? QUESTION_DATA.single.length : 0;
-            this.totalMultiEl.textContent = QUESTION_DATA.multi ? QUESTION_DATA.multi.length : 0;
-        } else {
-            // 如果 QUESTION_DATA 还没加载，再试一次
-            setTimeout(() => this.loadStats(), 50);
+    async loadAllQuestions() {
+        try {
+            if (CONFIG.DATA_SOURCE_TYPE === 'api') {
+                await this.loadFromApi();
+            } else {
+                await this.loadFromJson();
+            }
+            this.loadStats();
+        } catch (error) {
+            console.error('加载题目失败:', error);
+            alert('加载题目失败，请刷新页面重试');
         }
+    }
+
+    async loadFromApi() {
+        const baseUrl = CONFIG.API_BASE_URL || '';
+        const [judgeRes, singleRes, multiRes] = await Promise.all([
+            fetch(`${baseUrl}/api/questions/judge`),
+            fetch(`${baseUrl}/api/questions/single`),
+            fetch(`${baseUrl}/api/questions/multi`)
+        ]);
+
+        const [judgeData, singleData, multiData] = await Promise.all([
+            judgeRes.json(),
+            singleRes.json(),
+            multiRes.json()
+        ]);
+
+        this.questionData.judge = judgeData.filter(q => q.answer);
+        this.questionData.single = singleData.filter(q => q.answer);
+        this.questionData.multi = multiData.filter(q => q.answer);
+    }
+
+    async loadFromJson() {
+        const [judgeRes, singleRes, multiRes] = await Promise.all([
+            fetch(CONFIG.DATA_PATHS.judge),
+            fetch(CONFIG.DATA_PATHS.single),
+            fetch(CONFIG.DATA_PATHS.multi)
+        ]);
+
+        const [judgeData, singleData, multiData] = await Promise.all([
+            judgeRes.json(),
+            singleRes.json(),
+            multiRes.json()
+        ]);
+
+        this.questionData.judge = judgeData.filter(q => q.answer);
+        this.questionData.single = singleData.filter(q => q.answer);
+        this.questionData.multi = multiData.filter(q => q.answer);
+    }
+
+    loadStats() {
+        this.totalJudgeEl.textContent = this.questionData.judge.length;
+        this.totalSingleEl.textContent = this.questionData.single.length;
+        this.totalMultiEl.textContent = this.questionData.multi.length;
     }
 
     initEventListeners() {
@@ -69,7 +119,7 @@ class QuizApp {
     }
 
     loadQuestions(type) {
-        this.questions = QUESTION_DATA[type] || [];
+        this.questions = this.questionData[type] || [];
         this.shuffleQuestions();
     }
 
@@ -94,9 +144,7 @@ class QuizApp {
             return;
         }
 
-        // 获取用户配置的题目数量
         const questionCount = parseInt(this.questionCountInput.value) || CONFIG.QUESTIONS_PER_QUIZ;
-        // 每次只取配置的题目数量
         this.questions = this.questions.slice(0, questionCount);
         this.totalQuestionsEl.textContent = this.questions.length;
         this.showQuiz();
@@ -313,6 +361,7 @@ class QuizApp {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    await CONFIG.load();
     new QuizApp();
 });

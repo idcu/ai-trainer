@@ -3,6 +3,9 @@
 *.sqlite
 *.sqlite3
 
+# 配置文件
+config.json
+
 # Python
 __pycache__/
 *.py[cod]

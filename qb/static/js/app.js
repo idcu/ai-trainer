@@ -57,7 +57,8 @@ class QuizApp {
 
     async loadStats() {
         try {
-            const response = await fetch('/api/stats');
+            const baseUrl = CONFIG.API_BASE_URL || '';
+            const response = await fetch(`${baseUrl}/api/stats`);
             if (!response.ok) {
                 throw new Error('网络响应异常');
             }
@@ -72,7 +73,8 @@ class QuizApp {
 
     async loadQuestions(type) {
         try {
-            const response = await fetch(`/api/questions/${type}`);
+            const baseUrl = CONFIG.API_BASE_URL || '';
+            const response = await fetch(`${baseUrl}/api/questions/${type}`);
             if (!response.ok) {
                 throw new Error('网络响应异常');
             }
@@ -318,7 +320,8 @@ class QuizApp {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    await CONFIG.load();
     const app = new QuizApp();
     app.loadStats();
 });
