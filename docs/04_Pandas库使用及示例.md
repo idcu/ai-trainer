@@ -229,6 +229,162 @@ print(df_group.groupby('班级').agg({
 }))
 ```
 
+### 4.3.9 数据合并
+
+```python
+# 创建示例数据
+df1 = pd.DataFrame({
+    '姓名': ['张三', '李四', '王五'],
+    '年龄': [25, 22, 28],
+    '城市': ['北京', '上海', '广州']
+})
+
+df2 = pd.DataFrame({
+    '姓名': ['赵六', '钱七', '孙八'],
+    '年龄': [24, 26, 30],
+    '城市': ['深圳', '杭州', '南京']
+})
+
+df3 = pd.DataFrame({
+    '姓名': ['张三', '李四', '王五'],
+    '成绩': [85, 92, 78],
+    '科目': ['数学', '语文', '数学']
+})
+
+print("df1:")
+print(df1)
+print("\ndf2:")
+print(df2)
+print("\ndf3:")
+print(df3)
+
+# 1. 垂直合并（按行合并）- concat
+# 简单垂直合并
+df_concat_row = pd.concat([df1, df2], ignore_index=True)
+print("\n垂直合并结果:")
+print(df_concat_row)
+
+# 2. 水平合并（按列合并）- concat
+# 简单水平合并
+df_concat_col = pd.concat([df1, df3], axis=1)
+print("\n水平合并结果:")
+print(df_concat_col)
+
+# 3. 按指定键合并 - merge
+# 内连接（inner join）- 默认
+df_merge_inner = pd.merge(df1, df3, on='姓名')
+print("\n内连接结果:")
+print(df_merge_inner)
+
+# 左连接（left join）
+df4 = pd.DataFrame({
+    '姓名': ['张三', '李四', '王五', '赵六'],
+    '年龄': [25, 22, 28, 24]
+})
+df_merge_left = pd.merge(df4, df3, on='姓名', how='left')
+print("\n左连接结果:")
+print(df_merge_left)
+
+# 右连接（right join）
+df_merge_right = pd.merge(df1, df3, on='姓名', how='right')
+print("\n右连接结果:")
+print(df_merge_right)
+
+# 外连接（outer join）
+df_merge_outer = pd.merge(df4, df3, on='姓名', how='outer')
+print("\n外连接结果:")
+print(df_merge_outer)
+
+# 4. 按索引合并 - join
+df1_index = df1.set_index('姓名')
+df3_index = df3.set_index('姓名')
+df_join = df1_index.join(df3_index)
+print("\n按索引合并结果:")
+print(df_join)
+```
+
+### 4.3.10 数据拆分
+
+```python
+# 创建示例数据
+data_split = {
+    '姓名': ['张三', '李四', '王五', '赵六', '钱七', '孙八'],
+    '年龄': [25, 22, 28, 24, 26, 30],
+    '城市': ['北京', '上海', '广州', '深圳', '杭州', '南京'],
+    '成绩': [85, 92, 78, 88, 90, 85],
+    '性别': ['男', '女', '男', '女', '男', '女']
+}
+df_split = pd.DataFrame(data_split)
+print("原始数据:")
+print(df_split)
+
+# 1. 按条件拆分
+# 按成绩拆分：成绩大于85和小于等于85
+df_high = df_split[df_split['成绩'] > 85]
+df_low = df_split[df_split['成绩'] <= 85]
+print("\n成绩大于85的数据:")
+print(df_high)
+print("\n成绩小于等于85的数据:")
+print(df_low)
+
+# 按性别拆分
+df_male = df_split[df_split['性别'] == '男']
+df_female = df_split[df_split['性别'] == '女']
+print("\n男性数据:")
+print(df_male)
+print("\n女性数据:")
+print(df_female)
+
+# 2. 按索引拆分
+# 按位置拆分前3行和后3行
+df_head = df_split.iloc[:3]
+df_tail = df_split.iloc[3:]
+print("\n前3行数据:")
+print(df_head)
+print("\n后3行数据:")
+print(df_tail)
+
+# 按标签索引拆分（需要先设置索引）
+df_with_index = df_split.set_index('姓名')
+df_part1 = df_with_index.loc[:'王五']
+df_part2 = df_with_index.loc['赵六':]
+print("\n按姓名索引拆分的第一部分:")
+print(df_part1)
+print("\n按姓名索引拆分的第二部分:")
+print(df_part2)
+
+# 3. 按列拆分
+# 选择部分列
+df_basic = df_split[['姓名', '年龄', '城市']]
+df_score = df_split[['姓名', '成绩', '性别']]
+print("\n基本信息列:")
+print(df_basic)
+print("\n成绩信息列:")
+print(df_score)
+
+# 4. 使用 groupby 进行分组拆分
+# 按城市分组
+grouped = df_split.groupby('城市')
+print("\n按城市分组的各组数据:")
+for city, group in grouped:
+    print(f"\n城市: {city}")
+    print(group)
+
+# 将分组结果保存为字典
+group_dict = dict(list(grouped))
+print("\n北京的数据:")
+print(group_dict['北京'])
+
+# 5. 随机拆分（常用于机器学习数据集划分）
+# 按比例拆分：80%训练集，20%测试集
+train_df = df_split.sample(frac=0.8, random_state=42)
+test_df = df_split.drop(train_df.index)
+print("\n训练集（80%）:")
+print(train_df)
+print("\n测试集（20%）:")
+print(test_df)
+```
+
 ## 4.4 文件读写操作
 
 ### 4.4.1 读取CSV文件
