@@ -24,8 +24,8 @@ ai-trainer/
 │   │   ├── update_data_js.py   # 更新前端数据脚本
 │   │   └── check_db.py        # 数据库检查脚本
 │   ├── templates/        # 前端页面目录
-│   ├── static/           # 静态资源目录
-│   ├── data/             # 原始JSON数据
+│   ├── static/           # 静态资源目录（含原始JSON数据）
+│   ├── data/             # 数据库文件
 │   ├── docs/             # 题库系统文档
 │   └── android/          # Android构建相关
 ├── word/                  # Word格式题目
