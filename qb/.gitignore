@@ -2,9 +2,7 @@
 *.db
 *.sqlite
 *.sqlite3
-
-# 配置文件
-config.json
+!data/quiz.db
 
 # Python
 __pycache__/

@@ -1,0 +1,31 @@
+{
+    "flask": {
+        "host": "0.0.0.0",
+        "port": 5000,
+        "debug": true
+    },
+    "data_source": {
+        "type": "database",
+        "database": {
+            "path": "data/quiz.db"
+        },
+        "json": {
+            "data_paths": {
+                "judge": "static/data/judge.json",
+                "single": "static/data/single.json",
+                "multi": "static/data/multi.json"
+            }
+        }
+    },
+    "frontend": {
+        "data_source_type": "json",
+        "questions_per_quiz": 50,
+        "points_per_correct": 10,
+        "api_base_url": "",
+        "data_paths": {
+            "judge": "static/data/judge.json",
+            "single": "static/data/single.json",
+            "multi": "static/data/multi.json"
+        }
+    }
+}
