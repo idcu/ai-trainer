@@ -11,9 +11,9 @@
         },
         "json": {
             "data_paths": {
-                "judge": "data/judge.json",
-                "single": "data/single.json",
-                "multi": "data/multi.json"
+                "judge": "static/data/judge.json",
+                "single": "static/data/single.json",
+                "multi": "static/data/multi.json"
             }
         }
     },

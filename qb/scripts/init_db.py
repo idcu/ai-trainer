@@ -28,7 +28,7 @@ def init_database():
         )
     ''')
     
-    data_dir = Config.DATA_DIR
+    data_dir = os.path.join(Config.STATIC_DIR, 'data')
     
     for q_type in ['judge', 'single', 'multi']:
         json_path = os.path.join(data_dir, f'{q_type}.json')

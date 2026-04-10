@@ -34,12 +34,7 @@ instance/
 *.db
 *.sqlite
 *.sqlite3
-!quiz.db
-
-# Environment variables
-.env
-.env.local
-.env.*.local
+!qb/data/quiz.db
 
 # IDE
 .idea/

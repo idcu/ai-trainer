@@ -71,7 +71,7 @@ qb/
 ├── scripts/               # 辅助脚本目录
 │   ├── init_db.py         # 数据库初始化脚本
 │   ├── convert_docx.py    # Word文档转换脚本
-│   ├── update_data_js.py  # 更新前端数据脚本
+│   ├── update_data_js.py  # 检查数据脚本
 │   └── check_db.py        # 数据库检查脚本
 │
 ├── templates/             # 前端页面目录
@@ -91,10 +91,7 @@ qb/
 │       ├── single.json    # 单选题数据
 │       └── multi.json     # 多选题数据
 │
-├── data/                  # 原始JSON数据和数据库
-│   ├── judge.json
-│   ├── single.json
-│   ├── multi.json
+├── data/                  # 数据库目录
 │   └── quiz.db            # SQLite数据库文件（运行后生成）
 │
 ├── docs/                  # 文档目录
@@ -146,9 +143,9 @@ cp config.json.example config.json
         },
         "json": {
             "data_paths": {
-                "judge": "data/judge.json",
-                "single": "data/single.json",
-                "multi": "data/multi.json"
+                "judge": "static/data/judge.json",
+                "single": "static/data/single.json",
+                "multi": "static/data/multi.json"
             }
         }
     },
@@ -180,7 +177,7 @@ cp config.json.example config.json
 |--------|------|--------|
 | data_source.type | 数据源类型：`database` 或 `json` | database |
 | data_source.database.path | SQLite数据库路径 | data/quiz.db |
-| data_source.json.data_paths | JSON文件路径配置 | - |
+| data_source.json.data_paths | JSON文件路径配置 | static/data/*.json |
 
 ### 前端配置
 
@@ -213,7 +210,7 @@ cp config.json.example config.json
 python scripts/init_db.py
 ```
 
-这会在 `data/` 目录下创建 `quiz.db` 数据库文件，并从 `data/` 目录下的JSON文件导入题目。
+这会在 `data/` 目录下创建 `quiz.db` 数据库文件，并从 `static/data/` 目录下的JSON文件导入题目。
 
 ### 4. 启动服务器
 
@@ -275,9 +272,9 @@ python scripts/convert_docx.py
 python scripts/init_db.py
 ```
 
-## 更新前端数据
+## 检查数据
 
-纯前端版本直接从 `static/data/` 目录下的 JSON 文件读取数据，无需后端。当 `data/` 目录下的 JSON 更新后，需要同步到 `static/data/` 目录：
+JSON数据文件直接存放在 `static/data/` 目录下，供前后端使用。可运行以下命令检查数据：
 
 ```bash
 python scripts/update_data_js.py
@@ -307,4 +304,4 @@ python scripts/check_db.py
 - `data/quiz.db` 是SQLite数据库文件，不要提交到版本控制
 - `config.json` 文件包含配置，不要提交到版本控制
 - 开发环境使用Flask自带服务器，生产环境请使用WSGI服务器
-- 纯前端版本的数据位于 `static/data/` 目录下的 JSON 文件中
+- JSON数据文件存放在 `static/data/` 目录下，供前后端共同使用
