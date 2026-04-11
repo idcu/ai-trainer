@@ -1,12 +1,12 @@
-# 8. BeautifulSoup库使用及示例
+# 9. BeautifulSoup库使用及示例
 
-## 8.1 什么是BeautifulSoup
+## 9.1 什么是BeautifulSoup
 
 **BeautifulSoup** 是一个用于解析HTML和XML文档的Python库，常用于网页爬虫和数据提取。
 
-## 8.2 安装BeautifulSoup
+## 9.2 安装BeautifulSoup
 
-### 8.2.1 使用pip安装
+### 9.2.1 使用pip安装
 
 ```bash
 # 安装BeautifulSoup4
@@ -16,22 +16,22 @@ pip install beautifulsoup4
 pip install lxml
 ```
 
-### 8.2.2 使用conda安装
+### 9.2.2 使用conda安装
 
 ```bash
 # 在Anaconda Prompt中执行
 conda install beautifulsoup4 lxml
 ```
 
-## 8.3 BeautifulSoup库基础操作
+## 9.3 BeautifulSoup库基础操作
 
-### 8.3.1 导入BeautifulSoup
+### 9.3.1 导入BeautifulSoup
 
 ```python
 from bs4 import BeautifulSoup
 ```
 
-### 8.3.2 创建BeautifulSoup对象
+### 9.3.2 创建BeautifulSoup对象
 
 ```python
 # 从字符串解析HTML
@@ -58,7 +58,7 @@ soup = BeautifulSoup(html_doc, 'lxml')
 print(soup.prettify())
 ```
 
-### 8.3.3 遍历文档树
+### 9.3.3 遍历文档树
 
 ```python
 soup = BeautifulSoup(html_doc, 'html.parser')
@@ -83,7 +83,7 @@ print("a标签的id:", soup.a.get('id'))
 print("a标签的所有属性:", soup.a.attrs)
 ```
 
-### 8.3.4 搜索文档树 - find()和find_all()
+### 9.3.4 搜索文档树 - find()和find_all()
 
 ```python
 soup = BeautifulSoup(html_doc, 'html.parser')
@@ -109,7 +109,7 @@ specific_link = soup.find_all('a', href='https://example.com', id='link1')
 print("特定链接:", specific_link)
 ```
 
-### 8.3.5 CSS选择器
+### 9.3.5 CSS选择器
 
 ```python
 soup = BeautifulSoup(html_doc, 'html.parser')
@@ -133,7 +133,7 @@ print(soup.select('body > p'))
 print(soup.select('body a'))
 ```
 
-### 8.3.6 获取文本内容
+### 9.3.6 获取文本内容
 
 ```python
 soup = BeautifulSoup(html_doc, 'html.parser')
@@ -149,7 +149,7 @@ for p in soup.find_all('p'):
     print(p.get_text())
 ```
 
-### 8.3.7 遍历兄弟节点和父节点
+### 9.3.7 遍历兄弟节点和父节点
 
 ```python
 soup = BeautifulSoup(html_doc, 'html.parser')
@@ -170,9 +170,9 @@ for parent in first_p.parents:
     print(parent.name)
 ```
 
-## 8.4 Requests + BeautifulSoup实战示例
+## 9.4 Requests + BeautifulSoup实战示例
 
-### 8.4.1 示例1：获取网页标题
+### 9.4.1 示例1：获取网页标题
 
 ```python
 import requests
@@ -202,7 +202,7 @@ title = get_page_title(url)
 print(f"网页标题: {title}")
 ```
 
-### 8.4.2 示例2：提取网页所有链接
+### 9.4.2 示例2：提取网页所有链接
 
 ```python
 import requests
@@ -239,7 +239,7 @@ for i, link in enumerate(links[:10], 1):  # 只显示前10个
     print(f"{i}. {link['text']} -> {link['url']}")
 ```
 
-### 8.4.3 示例3：提取表格数据
+### 9.4.3 示例3：提取表格数据
 
 ```python
 import requests
@@ -305,7 +305,7 @@ print("表格数据:")
 print(df)
 ```
 
-### 8.4.4 示例4：爬取新闻标题列表
+### 9.4.4 示例4：爬取新闻标题列表
 
 ```python
 import requests
@@ -349,7 +349,7 @@ for item in news:
     time.sleep(0.1)  # 简单的延迟
 ```
 
-## 8.5 注意事项
+## 9.5 注意事项
 
 1. **遵守robots.txt**：爬取前查看网站的robots.txt，了解爬取规则
 2. **设置合理的请求间隔**：避免给服务器造成压力

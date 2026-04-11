@@ -1,18 +1,18 @@
-# 5. SQLite3库使用及示例
+# 7. SQLite3库使用及示例
 
-## 5.1 什么是SQLite
+## 7.1 什么是SQLite
 
 SQLite是一个轻量级的嵌入式关系型数据库，它不需要单独的服务器进程，可以直接读取和写入普通的磁盘文件。Python内置了sqlite3模块，无需额外安装即可使用。
 
-## 5.2 SQLite3基本操作
+## 7.2 SQLite3基本操作
 
-### 5.2.1 导入模块
+### 7.2.1 导入模块
 
 ```python
 import sqlite3
 ```
 
-### 5.2.2 连接数据库
+### 7.2.2 连接数据库
 
 ```python
 # 连接到数据库（如果不存在则创建）
@@ -24,7 +24,7 @@ cursor = conn.cursor()
 print("数据库连接成功！")
 ```
 
-### 5.2.3 创建表
+### 7.2.3 创建表
 
 ```python
 # 创建学生表
@@ -45,7 +45,7 @@ conn.commit()
 print("表创建成功！")
 ```
 
-### 5.2.4 插入数据
+### 7.2.4 插入数据
 
 ```python
 # 插入单条数据
@@ -68,7 +68,7 @@ conn.commit()
 print("数据插入成功！")
 ```
 
-### 5.2.5 查询数据
+### 7.2.5 查询数据
 
 ```python
 # 查询所有数据
@@ -120,7 +120,7 @@ for student in top3:
     print(student)
 ```
 
-### 5.2.6 更新数据
+### 7.2.6 更新数据
 
 ```python
 # 更新单条数据
@@ -138,7 +138,7 @@ for student in cursor.fetchall():
     print(student)
 ```
 
-### 5.2.7 删除数据
+### 7.2.7 删除数据
 
 ```python
 # 删除单条数据
@@ -156,9 +156,9 @@ for student in cursor.fetchall():
     print(student)
 ```
 
-## 5.3 高级操作
+## 7.3 高级操作
 
-### 5.3.1 聚合函数
+### 7.3.1 聚合函数
 
 ```python
 # 计算平均成绩
@@ -189,7 +189,7 @@ for row in major_stats:
     print(f"专业：{row[0]}, 平均成绩：{row[1]:.2f}, 人数：{row[2]}")
 ```
 
-### 5.3.2 使用Pandas读取SQLite数据
+### 7.3.2 使用Pandas读取SQLite数据
 
 ```python
 import pandas as pd
@@ -205,7 +205,7 @@ print("\n成绩大于85的学生：")
 print(df_high_score)
 ```
 
-### 5.3.3 使用Pandas写入SQLite数据
+### 7.3.3 使用Pandas写入SQLite数据
 
 ```python
 # 创建新的DataFrame
@@ -229,7 +229,7 @@ for student in cursor.fetchall():
     print(student)
 ```
 
-## 5.4 完整示例：学生成绩管理系统
+## 7.4 完整示例：学生成绩管理系统
 
 ```python
 import sqlite3
@@ -343,7 +343,7 @@ if __name__ == "__main__":
     manager.close()
 ```
 
-## 5.5 关闭数据库连接
+## 7.5 关闭数据库连接
 
 ```python
 # 关闭游标和连接
@@ -353,9 +353,9 @@ conn.close()
 print("数据库连接已关闭")
 ```
 
-## 5.6 SQLite示例
+## 7.6 SQLite示例
 
-### 5.6.1 示例1：创建产品库存管理系统
+### 7.6.1 示例1：创建产品库存管理系统
 
 ```python
 import sqlite3
@@ -416,7 +416,7 @@ conn.close()
 print("\n数据库操作完成")
 ```
 
-### 5.6.2 示例2：个人通讯录
+### 7.6.2 示例2：个人通讯录
 
 ```python
 import sqlite3
