@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+android/build/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Legacy files
+static/js/app.legacy.js
+static/js/data.js
+
+# Data files
+data/*.json
+static/data/*.json

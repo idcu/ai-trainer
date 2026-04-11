@@ -8,6 +8,29 @@
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
+    <div id="page-loader" class="page-loader">
+        <div class="page-loader-spinner"></div>
+        <div class="page-loader-text">加载中...</div>
+    </div>
+    
+    <div id="progress-prompt" class="progress-prompt hidden">
+        <div class="progress-prompt-card">
+            <div class="progress-prompt-icon">💾</div>
+            <div class="progress-prompt-title">发现未完成的答题</div>
+            <div class="progress-prompt-text">您有一个未完成的答题记录，是否继续？</div>
+            <div id="progress-prompt-time" class="progress-prompt-time"></div>
+            <div class="progress-prompt-buttons">
+                <button id="restore-progress-btn" class="progress-prompt-btn primary">继续答题</button>
+                <button id="new-quiz-btn" class="progress-prompt-btn secondary">重新开始</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="saving-indicator" class="saving-indicator hidden">
+        <span class="saving-spinner"></span>
+        <span>保存中...</span>
+    </div>
+    
     <div class="container">
         <header>
             <h1>人工智能训练师 - 题库系统</h1>
@@ -37,6 +60,31 @@
                     <input type="number" id="question-count" class="question-count-input" min="1" value="50">
                 </div>
                 
+                <div class="mode-selection">
+                    <h3>选择模式</h3>
+                    <div class="mode-buttons">
+                        <button class="mode-btn active" data-mode="practice">
+                            <span class="mode-btn-icon">📝</span>
+                            <span class="mode-btn-text">练习模式</span>
+                            <span class="mode-btn-desc">即时反馈，可查看解析</span>
+                        </button>
+                        <button class="mode-btn" data-mode="exam">
+                            <span class="mode-btn-icon">⏱️</span>
+                            <span class="mode-btn-text">考试模式</span>
+                            <span class="mode-btn-desc">限时答题，统一评分</span>
+                        </button>
+                    </div>
+                    <div class="time-config hidden" id="time-config">
+                        <h4>考试时间</h4>
+                        <div class="time-config-options">
+                            <button class="time-option" data-minutes="10">10分钟</button>
+                            <button class="time-option active" data-minutes="30">30分钟</button>
+                            <button class="time-option" data-minutes="60">60分钟</button>
+                            <button class="time-option" data-minutes="90">90分钟</button>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="type-buttons">
                     <button class="type-btn" data-type="judge">
                         <span class="btn-icon">✓</span>
@@ -51,6 +99,237 @@
                         <span class="btn-text">多选题</span>
                     </button>
                 </div>
+                
+                <div class="wrong-book-section">
+                    <button id="wrong-book-btn" class="wrong-book-btn">
+                        <span class="btn-icon">📚</span>
+                        <span class="btn-text">错题本</span>
+                        <span id="wrong-count-badge" class="wrong-count-badge">0</span>
+                    </button>
+                </div>
+                
+                <div class="favorite-section">
+                    <button id="favorite-btn" class="favorite-btn">
+                        <span class="btn-icon">⭐</span>
+                        <span class="btn-text">收藏夹</span>
+                        <span id="favorite-count-badge" class="favorite-count-badge">0</span>
+                    </button>
+                </div>
+                
+                <div class="history-section">
+                    <button id="history-btn" class="history-btn">
+                        <span class="btn-icon">📊</span>
+                        <span class="btn-text">历史记录</span>
+                        <span id="history-count-badge" class="history-count-badge">0</span>
+                    </button>
+                </div>
+                
+                <div class="search-section">
+                    <button id="search-btn" class="history-btn" style="background: linear-gradient(135deg, #0093E9 0%, #80D0C7 100%);">
+                        <span class="btn-icon">🔍</span>
+                        <span class="btn-text">题目搜索</span>
+                    </button>
+                </div>
+                
+                <div class="mixed-mode-section">
+                    <button id="mixed-mode-btn" class="mixed-mode-btn">
+                        <span class="btn-icon">🎲</span>
+                        <span class="btn-text">混合练习</span>
+                    </button>
+                </div>
+                
+                <div class="statistics-section">
+                    <div class="statistics-title">学习统计</div>
+                    <button id="statistics-btn" class="statistics-btn">
+                        <span>📊</span>
+                        <span>查看统计</span>
+                    </button>
+                </div>
+                
+                <div class="data-management-section">
+                    <div class="data-management-title">数据管理</div>
+                    <div class="data-io-buttons">
+                        <button id="export-data-btn" class="data-io-btn export">
+                            <span>💾</span>
+                            <span>导出数据</span>
+                        </button>
+                        <button id="import-data-btn" class="data-io-btn import">
+                            <span>📥</span>
+                            <span>导入数据</span>
+                        </button>
+                        <button id="clear-data-btn" class="data-io-btn clear">
+                            <span>🗑️</span>
+                            <span>清空数据</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="import-modal" class="import-modal hidden">
+                <div class="import-modal-card">
+                    <div class="import-modal-icon">📥</div>
+                    <div class="import-modal-title">导入数据</div>
+                    <div class="import-modal-text">选择或拖放 JSON 文件来导入数据</div>
+                    <div id="import-drop-zone" class="import-drop-zone">
+                        <div class="import-drop-zone-icon">📁</div>
+                        <div class="import-drop-zone-text">点击或拖放文件到这里</div>
+                    </div>
+                    <div class="import-modal-buttons">
+                        <button id="close-import-modal-btn" class="import-modal-btn secondary">取消</button>
+                    </div>
+                </div>
+            </div>
+            
+            <input type="file" id="import-file-input" class="import-file-input" accept=".json">
+            
+            <div id="statistics-modal" class="statistics-modal hidden">
+                <div class="statistics-modal-content">
+                    <div class="statistics-header">
+                        <h2>学习统计</h2>
+                        <button id="statistics-close-btn" class="statistics-close-btn">×</button>
+                    </div>
+                    <div id="statistics-body" class="statistics-body"></div>
+                </div>
+            </div>
+            
+            <div id="wrong-book-list" class="wrong-book-list hidden">
+                <div class="wrong-book-header">
+                    <h2>错题本</h2>
+                    <button id="back-from-wrong-btn" class="back-btn">返回菜单</button>
+                </div>
+                
+                <div class="wrong-book-stats">
+                    <div class="stat-item">
+                        <span class="stat-value" id="wrong-total">0</span>
+                        <span class="stat-desc">总错题</span>
+                    </div>
+                </div>
+                
+                <div class="wrong-book-actions">
+                    <button id="start-wrong-quiz-btn" class="retry-btn">开始错题练习</button>
+                    <button id="clear-wrong-btn" class="menu-btn">清空错题本</button>
+                </div>
+                
+                <div id="wrong-questions-container" class="wrong-questions-container"></div>
+            </div>
+            
+            <div id="favorite-list" class="favorite-list hidden">
+                <div class="favorite-header">
+                    <h2>收藏夹</h2>
+                    <button id="back-from-favorite-btn" class="back-btn">返回菜单</button>
+                </div>
+                
+                <div class="favorite-stats">
+                    <div class="stat-item">
+                        <span class="stat-value" id="favorite-total">0</span>
+                        <span class="stat-desc">总收藏</span>
+                    </div>
+                </div>
+                
+                <div class="favorite-actions">
+                    <button id="start-favorite-quiz-btn" class="retry-btn">开始收藏练习</button>
+                    <button id="clear-favorite-btn" class="menu-btn">清空收藏夹</button>
+                </div>
+                
+                <div id="favorite-questions-container" class="favorite-questions-container"></div>
+            </div>
+            
+            <div id="history-list" class="history-list hidden">
+                <div class="history-header">
+                    <h2>历史记录</h2>
+                    <button id="back-from-history-btn" class="back-btn">返回菜单</button>
+                </div>
+                
+                <div class="history-stats">
+                    <div class="stat-item">
+                        <span class="stat-value" id="history-total-quizzes">0</span>
+                        <span class="stat-desc">总次数</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="history-average-score">0</span>
+                        <span class="stat-desc">平均得分</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="history-average-accuracy">0%</span>
+                        <span class="stat-desc">平均正确率</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="history-best-score">0</span>
+                        <span class="stat-desc">最高得分</span>
+                    </div>
+                </div>
+                
+                <div class="history-actions">
+                    <button id="clear-history-btn" class="menu-btn">清空记录</button>
+                </div>
+                
+                <div id="history-records-container" class="history-records-container"></div>
+            </div>
+            
+            <div id="search-list" class="search-list hidden">
+                <div class="search-header">
+                    <h2>题目搜索</h2>
+                    <button id="back-from-search-btn" class="back-btn">返回菜单</button>
+                </div>
+                
+                <div class="search-section">
+                    <div class="search-box">
+                        <input type="text" id="search-input" class="search-input" placeholder="输入关键词搜索题目...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <div class="filter-title">筛选题型</div>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="all">全部</button>
+                            <button class="filter-btn" data-filter="judge">判断题</button>
+                            <button class="filter-btn" data-filter="single">单选题</button>
+                            <button class="filter-btn" data-filter="multi">多选题</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="search-results">
+                    <div class="search-results-header">
+                        <span class="search-results-title" id="search-results-title">搜索结果</span>
+                        <span class="search-results-count" id="search-results-count"></span>
+                    </div>
+                    <div id="search-results-container" class="search-results-container"></div>
+                </div>
+            </div>
+            
+            <div id="mixed-list" class="mixed-list hidden">
+                <div class="search-header">
+                    <h2>混合练习</h2>
+                    <button id="back-from-mixed-btn" class="back-btn">返回菜单</button>
+                </div>
+                
+                <div class="mixed-config-section">
+                    <div class="mixed-config-title">选择要混合的题型</div>
+                    <div class="mixed-type-options">
+                        <div class="mixed-type-option active" data-type="judge">
+                            <input type="checkbox" class="mixed-type-checkbox" data-type="judge" checked>
+                            <span class="mixed-type-label">判断题</span>
+                        </div>
+                        <div class="mixed-type-option active" data-type="single">
+                            <input type="checkbox" class="mixed-type-checkbox" data-type="single" checked>
+                            <span class="mixed-type-label">单选题</span>
+                        </div>
+                        <div class="mixed-type-option active" data-type="multi">
+                            <input type="checkbox" class="mixed-type-checkbox" data-type="multi" checked>
+                            <span class="mixed-type-label">多选题</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mixed-count-config">
+                        <label class="mixed-count-label" for="mixed-question-count">抽取题数量</label>
+                        <input type="number" id="mixed-question-count" class="mixed-count-input" min="1" value="50">
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button id="start-mixed-quiz-btn" class="menu-btn" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">开始混合练习</button>
+                </div>
             </div>
 
             <div id="quiz" class="quiz hidden">
@@ -62,6 +341,11 @@
                         得分: <span id="score">0</span>
                     </div>
                     <button id="back-btn" class="back-btn">返回菜单</button>
+                </div>
+
+                <div class="timer-section hidden" id="timer-section">
+                    <span class="timer-icon">⏱️</span>
+                    <span class="timer-display" id="timer-display">30:00</span>
                 </div>
 
                 <div class="progress-bar">
@@ -112,7 +396,19 @@
         </main>
     </div>
 
+    <script src="static/js/utils/storage.js"></script>
+    <script src="static/js/utils/helpers.js"></script>
+    <script src="static/js/utils/data-loader.js"></script>
+    <script src="static/js/modules/quiz-engine.js"></script>
+    <script src="static/js/modules/ui-renderer.js"></script>
+    <script src="static/js/modules/wrong-book.js"></script>
+    <script src="static/js/modules/favorites.js"></script>
+    <script src="static/js/modules/history.js"></script>
+    <script src="static/js/modules/search-filter.js"></script>
+    <script src="static/js/modules/progress-saver.js"></script>
+    <script src="static/js/modules/data-io.js"></script>
+    <script src="static/js/modules/statistics.js"></script>
     <script src="static/js/config.js"></script>
-    <script src="static/js/app.js"></script>
+    <script src="static/js/app-v2.js"></script>
 </body>
 </html>

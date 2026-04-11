@@ -28,6 +28,9 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+.pytest_cache/
+.coverage
+htmlcov/
 
 # IDE
 .vscode/
@@ -35,10 +38,15 @@ wheels/
 *.swp
 *.swo
 *~
+.project
+.settings/
+*.sublime-project
+*.sublime-workspace
 
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Node
 node_modules/
@@ -50,3 +58,22 @@ pnpm-lock.yaml
 android/.gradle/
 android/build/
 android/capacitor-cordova-android-plugins/
+android/app/build/
+android/.idea/
+
+# Code quality
+.eslintcache
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Local config
+config.json
+!config.json.example
+
+# Backup files
+*.bak
+*.backup
+

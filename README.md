@@ -31,8 +31,16 @@ ai-trainer/
 │   │   └── check_db.py        # 数据库检查脚本
 │   ├── templates/        # 前端页面目录
 │   ├── static/           # 静态资源目录（含原始JSON数据）
+│   │   ├── css/        # 样式文件
+│   │   ├── js/         # JavaScript文件（模块化设计）
+│   │   └── data/       # 题目数据（JSON格式）
 │   ├── data/             # 数据库文件
 │   ├── docs/             # 题库系统文档
+│   │   ├── USER_GUIDE.md     # 用户手册
+│   │   ├── DEVELOPMENT.md    # 开发者指南
+│   │   ├── API.md            # API文档
+│   │   ├── ARCHITECTURE.md  # 架构设计
+│   │   └── ANDROID_BUILD.md # Android打包指南
 │   ├── android/          # Android构建相关
 │   └── .github/          # GitHub Actions工作流
 ├── index.html             # 主页（跳转到题库系统）
@@ -88,15 +96,38 @@ ai-trainer/
 
 基于 Flask + SQLite 的在线题库系统，主要功能：
 
-- 判断题、单选题、多选题三种题型
-- 灵活的数据源配置（数据库 / JSON 文件）
-- Flask后端API + 纯前端版本
-- 随机出题
-- 实时反馈与成绩统计
-- 响应式设计
-- 支持 Docker 部署
-- 支持 GitHub Actions 自动部署
-- 支持 Android 应用构建
+### 核心功能
+- ✅ 三种题型：判断题、单选题、多选题
+- ✅ 练习模式和考试模式
+- ✅ 灵活的数据源配置（数据库 / JSON 文件）
+- ✅ Flask后端API + 纯前端版本
+- ✅ 随机出题
+- ✅ 实时反馈与成绩统计
+- ✅ 响应式设计
+
+### 错题与收藏
+- ✅ 错题本功能：自动记录答错的题目
+- ✅ 错题重练：专门的错题练习模式
+- ✅ 收藏功能：收藏重点题目
+- ✅ 收藏练习：从收藏夹开始练习
+
+### 历史记录与统计
+- ✅ 成绩历史：记录每次答题的详细信息
+- ✅ 学习统计：总测试次数、平均分、最佳成绩等
+- ✅ 性能等级：根据正确率评估学习水平
+
+### 搜索与筛选
+- ✅ 题目搜索：关键词搜索题目内容
+- ✅ 题型筛选：按题型筛选题目
+- ✅ 混合题型：多种题型混合出题
+
+### 其他功能
+- ✅ 答题进度保存与恢复
+- ✅ 数据导入导出
+- ✅ 支持 Docker 部署
+- ✅ 支持 GitHub Actions 自动部署
+- ✅ 支持 Android 应用构建
+- ✅ ESLint + Prettier 代码规范
 
 详细说明请查看 [qb/README.md](qb/README.md)
 
@@ -143,7 +174,7 @@ docker-compose up -d
 
 ## 快速开始
 
-### 方式一：本地运行题库系统
+### 方式一：本地运行题库系统（后端版本）
 
 1. 进入 qb/ 目录
    ```bash
@@ -173,9 +204,9 @@ docker-compose up -d
 
 6. 访问 http://127.0.0.1:5000
 
-### 方式二：直接使用纯前端版本
+### 方式二：直接使用纯前端版本（推荐）
 
-直接在浏览器中打开 `qb/templates/index_standalone.html` 即可使用，无需后端服务。
+直接在浏览器中打开 `qb/templates/index_standalone.html` 或根目录下的 `index.html` 即可使用，无需后端服务。
 
 ### 学习培训文档
 
@@ -187,6 +218,7 @@ docker-compose up -d
 - Flask 3.0
 - 前端：原生 HTML/CSS/JavaScript
 - Docker（可选，用于容器化部署）
+- ESLint + Prettier（用于代码规范检查）
 
 ## 许可证
 

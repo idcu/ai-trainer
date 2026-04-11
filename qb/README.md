@@ -2,111 +2,9 @@
 
 基于 Flask + SQLite 的在线题库系统，支持判断题、单选题和多选题。同时提供纯前端版本，可直接部署到 GitHub Pages 或 Gitee Pages。
 
-## 🚀 快速部署
+## ✨ 功能特性
 
-### 方式一：GitHub Pages / Gitee Pages（推荐，零成本）
-
-项目已内置纯前端版本，可直接部署到 GitHub Pages 或 Gitee Pages。
-
-#### GitHub Pages 部署步骤：
-
-1. 将代码推送到 GitHub 仓库
-2. 进入仓库的 **Settings** → **Pages**
-3. 在 **Build and deployment** 部分：
-   - Source: 选择 **Deploy from a branch** 或 **GitHub Actions**
-   - 如果使用 Actions：项目已配置 `.github/workflows/deploy.yml`，推送到 main/master 分支会自动部署
-   - 如果使用 Branch：选择 `main` 或 `master` 分支，文件夹选择 `/ (root)`（注意：GitHub Pages 只提供 `/ (root)` 和 `/docs` 两个选项）
-4. 点击 **Save** 保存配置
-5. 等待1-2分钟部署完成，访问 `https://<your-username>.github.io/<repo-name>/`
-
-#### Gitee Pages 部署步骤：
-
-1. 将代码推送到 Gitee 仓库
-2. 进入仓库页面，点击顶部的 **管理**（或仓库设置）
-3. 在左侧菜单中找到 **Gitee Pages**（可能在"功能管理"或"服务"分类下）
-4. 选择部署分支（如 `main` 或 `master`），部署目录留空
-5. 点击 **启动**，等待部署完成
-
-> 注意：Gitee Pages 需要仓库先进行实名认证才能使用
-
-### 方式二：Docker 部署
-
-```bash
-# 构建并启动
-docker-compose up -d
-
-# 访问 http://localhost:5000
-```
-
-### 方式三：本地运行
-
-```bash
-# 1. 安装依赖
-pip install -r requirements.txt
-
-# 2. 配置（可选）
-cp config.json.example config.json
-# 编辑 config.json 文件修改配置
-
-# 3. 初始化数据库
-python scripts/init_db.py
-
-# 4. 启动服务器
-python app.py
-
-# 访问 http://localhost:5000
-```
-
-## 项目结构
-
-```
-qb/
-├── app.py                  # Flask后端应用
-├── config.py              # 配置加载模块（读取 config.json）
-├── config.json            # 配置文件（不提交到 git）
-├── config.json.example    # 配置文件模板
-├── requirements.txt       # Python依赖
-├── README.md              # 本文件
-│
-├── scripts/               # 辅助脚本目录
-│   ├── init_db.py         # 数据库初始化脚本
-│   ├── convert_docx.py    # Word文档转换脚本
-│   ├── update_data_js.py  # 检查数据脚本
-│   └── check_db.py        # 数据库检查脚本
-│
-├── templates/             # 前端页面目录
-│   ├── index.html         # 后端版本页面
-│   └── index_standalone.html # 纯前端版本页面
-│
-├── static/                # 静态资源目录
-│   ├── css/
-│   │   └── style.css
-│   ├── js/
-│   │   ├── config.js      # 前端配置文件
-│   │   ├── app.js
-│   │   ├── app_standalone.js
-│   │   └── data.js
-│   └── data/
-│       ├── judge.json     # 判断题数据
-│       ├── single.json    # 单选题数据
-│       └── multi.json     # 多选题数据
-│
-├── data/                  # 数据库目录
-│   └── quiz.db            # SQLite数据库文件（运行后生成）
-│
-├── docs/                  # 文档目录
-│   └── ANDROID_BUILD.md   # Android打包指南
-│
-└── android/               # Android构建相关
-    ├── build_android.ps1
-    ├── capacitor.config.json
-    ├── package.json
-    ├── package-lock.json
-    └── manifest.json
-```
-
-## 功能特性
-
+### 核心功能
 - ✅ 三种题型：判断题、单选题、多选题
 - ✅ 灵活的数据源配置（数据库 / JSON 文件）
 - ✅ Flask后端API
@@ -118,6 +16,67 @@ qb/
 - ✅ 响应式设计
 - ✅ 支持Android应用构建
 - ✅ 统一的 JSON 配置文件
+
+### 错题与收藏
+- ✅ 错题本功能：自动记录答错的题目
+- ✅ 错题重练：专门的错题练习模式
+- ✅ 收藏功能：收藏重点题目
+- ✅ 收藏练习：从收藏夹开始练习
+- ✅ 数据持久化：错题和收藏数据本地存储
+
+### 历史记录
+- ✅ 成绩历史：记录每次答题的详细信息
+- ✅ 历史统计：总测试次数、平均分、最佳成绩等
+- ✅ 历史记录管理：删除单条或清空全部记录
+
+### 练习与考试模式
+- ✅ 练习模式：答题后立即查看答案和解析
+- ✅ 考试模式：交卷后统一查看成绩
+- ✅ 计时功能：考试模式支持自定义时间限制
+- ✅ 自动交卷：时间到自动交卷
+
+### 搜索与筛选
+- ✅ 题目搜索：关键词搜索题目内容
+- ✅ 题型筛选：按题型筛选题目
+- ✅ 搜索高亮：搜索结果高亮显示关键词
+- ✅ 快速练习：从搜索结果直接开始练习
+
+### 混合题型
+- ✅ 混合练习：多种题型混合出题
+- ✅ 题型选择：可配置练习的题型组合
+- ✅ 数量控制：自定义混合练习的题目数量
+- ✅ 题型标识：答题时显示当前题型
+
+### 答题进度
+- ✅ 自动保存：答题过程自动保存进度
+- ✅ 恢复答题：支持从上次中断处继续
+- ✅ 进度提示：显示保存的进度时间
+- ✅ 手动选择：可选择恢复或重新开始
+
+### 数据导入导出
+- ✅ 数据导出：导出错题、收藏、历史记录等数据
+- ✅ 数据导入：从文件导入用户数据
+- ✅ 数据清空：一键清空所有用户数据
+- ✅ 文件上传：支持拖拽上传导入文件
+
+### 统计与分析
+- ✅ 学习概览：总测试次数、答题数、得分等
+- ✅ 性能等级：根据正确率评估学习水平
+- ✅ 题型表现：各题型的正确率统计
+- ✅ 学习建议：根据表现提供针对性建议
+
+### 代码质量
+- ✅ ESLint 配置：JavaScript 代码规范检查
+- ✅ Prettier 配置：代码格式化
+- ✅ EditorConfig：编辑器配置统一
+- ✅ 代码规范：遵循最佳实践
+
+### 性能优化
+- ✅ 防抖与节流：优化高频事件处理
+- ✅ 数据缓存：减少重复网络请求
+- ✅ DOM 优化：批量渲染减少重排
+- ✅ LocalStorage 优化：内存缓存+批量写入
+- ✅ requestAnimationFrame：优化动画和更新
 
 ## 配置说明
 

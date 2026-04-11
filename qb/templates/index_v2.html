@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人工智能训练师 - 题库系统 (v2)</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>人工智能训练师 - 题库系统</h1>
+        </header>
+        
+        <main>
+            <div id="menu" class="menu">
+                <h2>选择题型</h2>
+                
+                <div class="stats-display">
+                    <div class="stat-item">
+                        <span class="stat-value" id="total-judge">0</span>
+                        <span class="stat-desc">判断题</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="total-single">0</span>
+                        <span class="stat-desc">单选题</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="total-multi">0</span>
+                        <span class="stat-desc">多选题</span>
+                    </div>
+                </div>
+                
+                <div class="config-section">
+                    <label for="question-count">抽取题数量:</label>
+                    <input type="number" id="question-count" class="question-count-input" min="1" value="50">
+                </div>
+                
+                <div class="type-buttons">
+                    <button class="type-btn" data-type="judge">
+                        <span class="btn-icon">✓</span>
+                        <span class="btn-text">判断题</span>
+                    </button>
+                    <button class="type-btn" data-type="single">
+                        <span class="btn-icon">○</span>
+                        <span class="btn-text">单选题</span>
+                    </button>
+                    <button class="type-btn" data-type="multi">
+                        <span class="btn-icon">□</span>
+                        <span class="btn-text">多选题</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="quiz" class="quiz hidden">
+                <div class="quiz-header">
+                    <div class="progress-info">
+                        <span id="current-question">1</span> / <span id="total-questions">0</span>
+                    </div>
+                    <div class="score-info">
+                        得分: <span id="score">0</span>
+                    </div>
+                    <button id="back-btn" class="back-btn">返回菜单</button>
+                </div>
+
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+
+                <div class="question-container">
+                    <div id="question" class="question"></div>
+                    <div id="options" class="options"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="submit-btn" class="submit-btn">提交答案</button>
+                    <button id="next-btn" class="next-btn hidden">下一题</button>
+                </div>
+
+                <div id="feedback" class="feedback hidden"></div>
+                <div id="analysis" class="analysis hidden"></div>
+            </div>
+
+            <div id="result" class="result hidden">
+                <h2>测试完成！</h2>
+                <div class="score-display">
+                    <div class="final-score">
+                        <span id="final-score-value">0</span>
+                    </div>
+                    <div class="score-label">总分</div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-value" id="correct-count">0</span>
+                        <span class="stat-label">正确</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="wrong-count">0</span>
+                        <span class="stat-label">错误</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="accuracy">0%</span>
+                        <span class="stat-label">正确率</span>
+                    </div>
+                </div>
+                <div class="result-buttons">
+                    <button id="retry-btn" class="retry-btn">重新测试</button>
+                    <button id="menu-btn" class="menu-btn">返回菜单</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="static/js/utils/storage.js"></script>
+    <script src="static/js/utils/helpers.js"></script>
+    <script src="static/js/utils/data-loader.js"></script>
+    <script src="static/js/modules/quiz-engine.js"></script>
+    <script src="static/js/modules/ui-renderer.js"></script>
+    <script src="static/js/config.js"></script>
+    <script src="static/js/app-v2.js"></script>
+</body>
+</html>
