@@ -492,6 +492,8 @@ main {
     align-items: center;
     gap: 10px;
     min-width: 200px;
+    width: 100%;
+    max-width: 300px;
 }
 
 .wrong-book-btn:hover {
@@ -693,6 +695,8 @@ main {
     align-items: center;
     gap: 10px;
     min-width: 200px;
+    width: 100%;
+    max-width: 300px;
 }
 
 .favorite-btn:hover {
@@ -907,7 +911,7 @@ main {
 }
 
 .history-section {
-    margin-top: 15px;
+    margin-top: 25px;
     text-align: center;
 }
 
@@ -925,6 +929,8 @@ main {
     align-items: center;
     gap: 10px;
     min-width: 200px;
+    width: 100%;
+    max-width: 300px;
 }
 
 .history-btn:hover {
@@ -1407,7 +1413,9 @@ main {
 }
 
 .search-section {
+    margin-top: 25px;
     margin-bottom: 25px;
+    text-align: center;
 }
 
 .search-box {
@@ -1644,7 +1652,7 @@ main {
 }
 
 .mixed-mode-section {
-    margin-top: 15px;
+    margin-top: 25px;
     text-align: center;
 }
 
@@ -1661,6 +1669,8 @@ main {
     align-items: center;
     gap: 10px;
     min-width: 200px;
+    width: 100%;
+    max-width: 300px;
 }
 
 .mixed-mode-btn:hover {
