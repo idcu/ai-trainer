@@ -28,6 +28,8 @@ class QuizApp {
         this.selectedMixedTypes = ['judge', 'single', 'multi'];
         this.mixedQuestionCount = 50;
         
+        this.currentQuizWrongQuestions = []; // 记录当前测验的错题
+        
         this.initEventListeners();
         this.checkForSavedProgress();
     }
@@ -179,6 +181,7 @@ class QuizApp {
         this.isFavoriteQuizMode = false;
         this.isMixedQuizMode = false;
         this.isInQuiz = true;
+        this.currentQuizWrongQuestions = []; // 清空当前测验的错题记录
 
         try {
             const questions = await this.loadQuestions(type);
@@ -627,6 +630,18 @@ class QuizApp {
 
         const question = this.engine.getCurrentQuestion();
 
+        // 记录当前测验的错题
+        if (!result.isCorrect) {
+            this.currentQuizWrongQuestions.push({
+                id: question.id,
+                type: question.type,
+                question: question.question,
+                answer: question.answer,
+                analysis: question.analysis
+            });
+        }
+
+        // 添加到错题本（保持原有逻辑）
         if (!result.isCorrect && !this.isWrongQuizMode && !this.isFavoriteQuizMode && !this.isMixedQuizMode) {
             this.wrongBook.add(question);
             this.updateWrongCountBadge();
@@ -691,6 +706,7 @@ class QuizApp {
     showResult() {
         const scoreData = this.engine.getScore();
         this.ui.updateResult(scoreData);
+        this.ui.renderResultWrongQuestions(this.currentQuizWrongQuestions);
         this.ui.showResult();
     }
 

@@ -46,7 +46,8 @@ class UIRenderer {
 
         this.currentQuestionEl = document.getElementById('current-question');
         this.totalQuestionsEl = document.getElementById('total-questions');
-        this.scoreEl = document.getElementById('score');
+        this.correctCountDisplayEl = document.getElementById('correct-count-display');
+        this.wrongCountDisplayEl = document.getElementById('wrong-count-display');
         this.progressFillEl = document.getElementById('progress-fill');
 
         this.questionEl = document.getElementById('question');
@@ -123,12 +124,12 @@ class UIRenderer {
     updateProgress(progress, score) {
         this.currentQuestionEl.textContent = progress.current;
         this.totalQuestionsEl.textContent = progress.total;
-        this.scoreEl.textContent = score.score;
+        this.correctCountDisplayEl.textContent = score.correct;
+        this.wrongCountDisplayEl.textContent = score.wrong;
         this.progressFillEl.style.width = `${progress.percentage}%`;
     }
 
     updateResult(scoreData) {
-        this.finalScoreValueEl.textContent = scoreData.score;
         this.correctCountEl.textContent = scoreData.correct;
         this.wrongCountEl.textContent = scoreData.wrong;
         this.accuracyEl.textContent = scoreData.accuracy + '%';
@@ -439,17 +440,7 @@ class UIRenderer {
     }
 
     renderQuestionFavoriteButton(isFavorited) {
-        let favoriteBtn = document.querySelector('.question-favorite-btn');
-        
-        if (!favoriteBtn) {
-            const questionContainer = document.querySelector('.question-container');
-            if (questionContainer) {
-                favoriteBtn = document.createElement('button');
-                favoriteBtn.className = 'question-favorite-btn';
-                questionContainer.appendChild(favoriteBtn);
-            }
-        }
-        
+        const favoriteBtn = document.getElementById('question-favorite-btn');
         if (favoriteBtn) {
             favoriteBtn.textContent = isFavorited ? '❤️' : '🤍';
             favoriteBtn.classList.toggle('favorited', isFavorited);
@@ -457,10 +448,50 @@ class UIRenderer {
     }
 
     bindQuestionFavoriteButton(callback) {
-        const favoriteBtn = document.querySelector('.question-favorite-btn');
+        const favoriteBtn = document.getElementById('question-favorite-btn');
         if (favoriteBtn) {
             favoriteBtn.addEventListener('click', callback);
         }
+    }
+
+    renderResultWrongQuestions(wrongQuestions) {
+        const section = document.getElementById('wrong-questions-section');
+        const container = document.getElementById('wrong-questions-container-result');
+
+        if (wrongQuestions.length === 0) {
+            section.classList.add('hidden');
+            return;
+        }
+
+        section.classList.remove('hidden');
+        container.innerHTML = '';
+
+        const typeNames = {
+            'judge': '判断题',
+            'single': '单选题',
+            'multi': '多选题'
+        };
+
+        const fragment = document.createDocumentFragment();
+        wrongQuestions.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = 'wrong-question-item-result';
+
+            div.innerHTML = `
+                <div class="wrong-question-header-result">
+                    <span class="wrong-question-type-result ${item.type}">${typeNames[item.type]}</span>
+                </div>
+                <div class="wrong-question-text-result">${index + 1}. ${item.question}</div>
+                <div class="wrong-question-answer-result">
+                    <strong>正确答案：</strong>${item.answer}
+                    ${item.analysis ? `<br><br><strong>解析：</strong>${item.analysis}` : ''}
+                </div>
+            `;
+
+            fragment.appendChild(div);
+        });
+
+        container.appendChild(fragment);
     }
 
     showHistoryList() {
