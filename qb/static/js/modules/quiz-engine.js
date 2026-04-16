@@ -7,6 +7,8 @@ class QuizEngine {
         this.wrongCount = 0;
         this.currentType = '';
         this.selectedAnswers = new Set();
+        this.fillAnswers = [];
+        this.essayAnswer = '';
         this.isAnswered = false;
     }
 
@@ -16,6 +18,8 @@ class QuizEngine {
         this.correctCount = 0;
         this.wrongCount = 0;
         this.selectedAnswers.clear();
+        this.fillAnswers = [];
+        this.essayAnswer = '';
         this.isAnswered = false;
     }
 
@@ -71,23 +75,61 @@ class QuizEngine {
     }
 
     hasSelectedAnswer() {
-        return this.selectedAnswers.size > 0;
+        const question = this.getCurrentQuestion();
+        if (!question) return false;
+        
+        if (question.type === 'fill') {
+            return this.fillAnswers.length === (question.blanks?.length || 0) && 
+                   this.fillAnswers.every(ans => ans.trim() !== '');
+        } else if (question.type === 'essay') {
+            return this.essayAnswer.trim() !== '';
+        } else {
+            return this.selectedAnswers.size > 0;
+        }
+    }
+
+    setFillAnswer(index, value) {
+        if (this.isAnswered) return false;
+        this.fillAnswers[index] = value;
+        return true;
+    }
+
+    setEssayAnswer(value) {
+        if (this.isAnswered) return false;
+        this.essayAnswer = value;
+        return true;
     }
 
     submitAnswer() {
         if (this.isAnswered) return null;
 
         const question = this.getCurrentQuestion();
-        const correctAnswer = question.answer;
-        const userAnswer = Array.from(this.selectedAnswers).sort().join('');
-        const isCorrect = userAnswer === correctAnswer;
+        let isCorrect = false;
+        let correctAnswer = '';
+        let userAnswer = '';
+
+        if (question.type === 'fill') {
+            correctAnswer = question.blanks?.map(b => b.answer).join('; ') || '';
+            userAnswer = this.fillAnswers.join('; ');
+            isCorrect = question.blanks?.every((blank, i) => 
+                (this.fillAnswers[i] || '').toLowerCase().trim() === blank.answer.toLowerCase().trim()
+            ) || false;
+        } else if (question.type === 'essay') {
+            correctAnswer = question.reference_answer || '';
+            userAnswer = this.essayAnswer;
+            isCorrect = null;
+        } else {
+            correctAnswer = question.answer;
+            userAnswer = Array.from(this.selectedAnswers).sort().join('');
+            isCorrect = userAnswer === correctAnswer;
+        }
 
         this.isAnswered = true;
 
-        if (isCorrect) {
+        if (isCorrect === true) {
             this.score += CONFIG.POINTS_PER_CORRECT;
             this.correctCount++;
-        } else {
+        } else if (isCorrect === false) {
             this.wrongCount++;
         }
 
@@ -105,6 +147,8 @@ class QuizEngine {
             return false;
         }
         this.selectedAnswers.clear();
+        this.fillAnswers = [];
+        this.essayAnswer = '';
         this.isAnswered = false;
         return true;
     }

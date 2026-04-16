@@ -6,7 +6,9 @@ const CONFIG = {
     DATA_PATHS: {
         judge: 'static/data/judge.json',
         single: 'static/data/single.json',
-        multi: 'static/data/multi.json'
+        multi: 'static/data/multi.json',
+        fill: 'static/data/fill.json',
+        essay: 'static/data/essay.json'
     },
     _loaded: false,
     _loadPromise: null,

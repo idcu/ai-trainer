@@ -52,6 +52,14 @@
                         <span class="stat-value" id="total-multi">0</span>
                         <span class="stat-desc">多选题</span>
                     </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="total-fill">0</span>
+                        <span class="stat-desc">填空题</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="total-essay">0</span>
+                        <span class="stat-desc">简答题</span>
+                    </div>
                 </div>
                 
                 <div class="config-section">
@@ -96,6 +104,14 @@
                     <button class="type-btn" data-type="multi">
                         <span class="btn-icon">□</span>
                         <span class="btn-text">多选题</span>
+                    </button>
+                    <button class="type-btn" data-type="fill">
+                        <span class="btn-icon">▢</span>
+                        <span class="btn-text">填空题</span>
+                    </button>
+                    <button class="type-btn" data-type="essay">
+                        <span class="btn-icon">✎</span>
+                        <span class="btn-text">简答题</span>
                     </button>
                 </div>
                 
@@ -284,6 +300,8 @@
                             <button class="filter-btn" data-filter="judge">判断题</button>
                             <button class="filter-btn" data-filter="single">单选题</button>
                             <button class="filter-btn" data-filter="multi">多选题</button>
+                            <button class="filter-btn" data-filter="fill">填空题</button>
+                            <button class="filter-btn" data-filter="essay">简答题</button>
                         </div>
                     </div>
                 </div>
@@ -317,6 +335,14 @@
                         <div class="mixed-type-option active" data-type="multi">
                             <input type="checkbox" class="mixed-type-checkbox" data-type="multi" checked>
                             <span class="mixed-type-label">多选题</span>
+                        </div>
+                        <div class="mixed-type-option active" data-type="fill">
+                            <input type="checkbox" class="mixed-type-checkbox" data-type="fill" checked>
+                            <span class="mixed-type-label">填空题</span>
+                        </div>
+                        <div class="mixed-type-option active" data-type="essay">
+                            <input type="checkbox" class="mixed-type-checkbox" data-type="essay" checked>
+                            <span class="mixed-type-label">简答题</span>
                         </div>
                     </div>
                     

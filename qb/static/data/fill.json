@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "type": "fill",
+    "question": "Python 中用于定义函数的关键字是 ______。",
+    "blanks": [
+      {
+        "answer": "def",
+        "hint": "3个字母的关键字"
+      }
+    ],
+    "analysis": "def 是 Python 中定义函数的标准关键字。"
+  },
+  {
+    "id": 2,
+    "type": "fill",
+    "question": "在数据清洗中，处理缺失值的常用方法有 ______、______ 和 ______。（请写出三种）",
+    "blanks": [
+      {
+        "answer": "删除",
+        "hint": "直接移除缺失值"
+      },
+      {
+        "answer": "填充",
+        "hint": "用均值、中位数等填充"
+      },
+      {
+        "answer": "插值",
+        "hint": "根据相邻值估算"
+      }
+    ],
+    "analysis": "缺失值处理的常用方法包括删除、填充和插值等。"
+  },
+  {
+    "id": 3,
+    "type": "fill",
+    "question": "NumPy 数组的主要数据类型是 ______。",
+    "blanks": [
+      {
+        "answer": "ndarray",
+        "hint": "N维数组对象"
+      }
+    ],
+    "analysis": "ndarray（N-dimensional array）是 NumPy 的核心数据结构。"
+  },
+  {
+    "id": 4,
+    "type": "fill",
+    "question": "SQL 中用于查询数据的关键字是 ______。",
+    "blanks": [
+      {
+        "answer": "SELECT",
+        "hint": "SQL查询的开头关键字"
+      }
+    ],
+    "analysis": "SELECT 是 SQL 中最常用的查询关键字。"
+  },
+  {
+    "id": 5,
+    "type": "fill",
+    "question": "在监督学习中，数据通常分为 ______ 和 ______ 两部分。",
+    "blanks": [
+      {
+        "answer": "训练集",
+        "hint": "用于模型训练"
+      },
+      {
+        "answer": "测试集",
+        "hint": "用于模型评估"
+      }
+    ],
+    "analysis": "监督学习通常将数据分为训练集和测试集。"
+  }
+]

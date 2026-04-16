@@ -119,6 +119,10 @@ class UIRenderer {
         this.totalJudgeEl.textContent = stats.judge || 0;
         this.totalSingleEl.textContent = stats.single || 0;
         this.totalMultiEl.textContent = stats.multi || 0;
+        const totalFillEl = document.getElementById('total-fill');
+        const totalEssayEl = document.getElementById('total-essay');
+        if (totalFillEl) totalFillEl.textContent = stats.fill || 0;
+        if (totalEssayEl) totalEssayEl.textContent = stats.essay || 0;
     }
 
     updateProgress(progress, score) {
@@ -154,6 +158,10 @@ class UIRenderer {
             this.renderSingleOptions(question.options);
         } else if (question.type === 'multi') {
             this.renderMultiOptions(question.options);
+        } else if (question.type === 'fill') {
+            this.renderFillOptions(question);
+        } else if (question.type === 'essay') {
+            this.renderEssayOptions(question);
         }
     }
 
@@ -214,7 +222,11 @@ class UIRenderer {
 
     showFeedback(isCorrect, correctAnswer, analysis) {
         this.feedbackEl.classList.remove('hidden');
-        if (isCorrect) {
+        if (isCorrect === null) {
+            // 简答题情况
+            this.feedbackEl.classList.add('correct');
+            this.feedbackEl.textContent = '📝 参考答案已显示';
+        } else if (isCorrect) {
             this.feedbackEl.classList.add('correct');
             this.feedbackEl.textContent = '✓ 回答正确！';
         } else {
@@ -1156,5 +1168,76 @@ class UIRenderer {
         if (closeBtn) {
             closeBtn.addEventListener('click', callbacks.onCloseStatistics);
         }
+    }
+
+    renderFillOptions(question) {
+        const fragment = document.createDocumentFragment();
+        const blanks = question.blanks || [];
+        
+        blanks.forEach((blank, index) => {
+            const inputContainer = document.createElement('div');
+            inputContainer.className = 'fill-input-container';
+            
+            const label = document.createElement('div');
+            label.className = 'fill-input-label';
+            label.textContent = `第 ${index + 1} 空`;
+            
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'fill-input';
+            input.placeholder = blank.hint || '请输入答案';
+            input.dataset.index = index;
+            
+            inputContainer.appendChild(label);
+            inputContainer.appendChild(input);
+            fragment.appendChild(inputContainer);
+        });
+        
+        this.optionsEl.appendChild(fragment);
+    }
+
+    renderEssayOptions(question) {
+        const fragment = document.createDocumentFragment();
+        
+        const textarea = document.createElement('textarea');
+        textarea.className = 'essay-textarea';
+        textarea.placeholder = '请在此输入您的答案...';
+        
+        fragment.appendChild(textarea);
+        this.optionsEl.appendChild(fragment);
+    }
+
+    getFillAnswers() {
+        const inputs = this.optionsEl.querySelectorAll('.fill-input');
+        const answers = [];
+        inputs.forEach(input => {
+            answers[parseInt(input.dataset.index)] = input.value;
+        });
+        return answers;
+    }
+
+    getEssayAnswer() {
+        const textarea = this.optionsEl.querySelector('.essay-textarea');
+        return textarea ? textarea.value : '';
+    }
+
+    highlightFillAnswers(question, userAnswers) {
+        const inputs = this.optionsEl.querySelectorAll('.fill-input');
+        const blanks = question.blanks || [];
+        
+        inputs.forEach(input => {
+            const index = parseInt(input.dataset.index);
+            const correctAnswer = blanks[index]?.answer?.toLowerCase().trim();
+            const userAnswer = (userAnswers[index] || '').toLowerCase().trim();
+            
+            input.disabled = true;
+            input.classList.remove('correct', 'wrong');
+            
+            if (userAnswer === correctAnswer) {
+                input.classList.add('correct');
+            } else if (userAnswer) {
+                input.classList.add('wrong');
+            }
+        });
     }
 }

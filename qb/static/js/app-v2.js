@@ -13,7 +13,9 @@ class QuizApp {
         this.allQuestions = {
             judge: [],
             single: [],
-            multi: []
+            multi: [],
+            fill: [],
+            essay: []
         };
         this.isWrongQuizMode = false;
         this.isFavoriteQuizMode = false;
@@ -25,7 +27,7 @@ class QuizApp {
         this.timerInterval = null;
         this.remainingTime = 0;
         
-        this.selectedMixedTypes = ['judge', 'single', 'multi'];
+        this.selectedMixedTypes = ['judge', 'single', 'multi', 'fill', 'essay'];
         this.mixedQuestionCount = 50;
         
         this.currentQuizWrongQuestions = []; // 记录当前测验的错题
@@ -142,7 +144,7 @@ class QuizApp {
 
     async loadAllQuestions() {
         try {
-            for (const type of ['judge', 'single', 'multi']) {
+            for (const type of ['judge', 'single', 'multi', 'fill', 'essay']) {
                 this.allQuestions[type] = await DataLoader.loadQuestions(type);
             }
         } catch (error) {
@@ -594,6 +596,31 @@ class QuizApp {
         this.ui.bindQuestionFavoriteButton(() => this.toggleCurrentQuestionFavorite());
         
         this.clearOptionSelections();
+        this.bindFillEssayInputs();
+    }
+
+    bindFillEssayInputs() {
+        const question = this.engine.getCurrentQuestion();
+        if (!question) return;
+
+        if (question.type === 'fill') {
+            const inputs = this.ui.optionsEl.querySelectorAll('.fill-input');
+            inputs.forEach(input => {
+                input.addEventListener('input', (e) => {
+                    const index = parseInt(e.target.dataset.index);
+                    this.engine.setFillAnswer(index, e.target.value);
+                    this.ui.setSubmitButtonState(this.engine.hasSelectedAnswer());
+                });
+            });
+        } else if (question.type === 'essay') {
+            const textarea = this.ui.optionsEl.querySelector('.essay-textarea');
+            if (textarea) {
+                textarea.addEventListener('input', (e) => {
+                    this.engine.setEssayAnswer(e.target.value);
+                    this.ui.setSubmitButtonState(this.engine.hasSelectedAnswer());
+                });
+            }
+        }
     }
 
     handleOptionClick(optionEl, value) {
@@ -630,27 +657,40 @@ class QuizApp {
 
         const question = this.engine.getCurrentQuestion();
 
-        // 记录当前测验的错题
-        if (!result.isCorrect) {
+        // 记录当前测验的错题（仅对于有明确对错的题型）
+        if (result.isCorrect === false) {
             this.currentQuizWrongQuestions.push({
                 id: question.id,
                 type: question.type,
                 question: question.question,
-                answer: question.answer,
+                answer: question.type === 'essay' ? question.reference_answer : question.answer,
                 analysis: question.analysis
             });
         }
 
-        // 添加到错题本（保持原有逻辑）
-        if (!result.isCorrect && !this.isWrongQuizMode && !this.isFavoriteQuizMode && !this.isMixedQuizMode) {
+        // 添加到错题本（仅对于有明确对错的题型，保持原有逻辑）
+        if (result.isCorrect === false && !this.isWrongQuizMode && !this.isFavoriteQuizMode && !this.isMixedQuizMode) {
             this.wrongBook.add(question);
             this.updateWrongCountBadge();
         }
 
         if (this.quizMode === 'practice') {
-            this.ui.showFeedback(result.isCorrect, result.correctAnswer, result.analysis);
-            this.ui.highlightAnswers(result.correctAnswer, this.engine.selectedAnswers);
-            this.ui.showNextButton(this.engine.isLastQuestion());
+            if (question.type === 'fill') {
+                this.ui.showFeedback(result.isCorrect, result.correctAnswer, result.analysis);
+                this.ui.highlightFillAnswers(question, this.engine.fillAnswers);
+                this.ui.showNextButton(this.engine.isLastQuestion());
+            } else if (question.type === 'essay') {
+                // 简答题不判断对错，只显示参考答案
+                this.ui.showFeedback(null, result.correctAnswer, result.analysis);
+                // 禁用文本区域
+                const textarea = this.ui.optionsEl.querySelector('.essay-textarea');
+                if (textarea) textarea.disabled = true;
+                this.ui.showNextButton(this.engine.isLastQuestion());
+            } else {
+                this.ui.showFeedback(result.isCorrect, result.correctAnswer, result.analysis);
+                this.ui.highlightAnswers(result.correctAnswer, this.engine.selectedAnswers);
+                this.ui.showNextButton(this.engine.isLastQuestion());
+            }
         } else {
             if (this.engine.isLastQuestion()) {
                 this.stopTimer();

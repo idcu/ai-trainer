@@ -57,7 +57,7 @@ const DataLoader = {
 
     async loadStats() {
         const stats = {};
-        for (const type of ['judge', 'single', 'multi']) {
+        for (const type of ['judge', 'single', 'multi', 'fill', 'essay']) {
             try {
                 const questions = await this.loadQuestions(type);
                 stats[type] = questions.length;
